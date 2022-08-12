@@ -15,4 +15,5 @@ Furthermore, some background resources are available.
 
 ### Books
 
-- Cukic, Ivan, "Functional Programming in C++", Manning, Nov. 2018, in `docs/books/cifpicpp.pdf`
+- Cukic, Ivan, "Functional Programming in C++", Manning, 2018, in `docs/books/cifpicpp.pdf`
+- Lott, Steven F., "Functional Python Programming", 2. Edition, Packt Publishing, 2018, in `docs/books/lsfpp.pdf`

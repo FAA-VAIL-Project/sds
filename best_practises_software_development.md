@@ -4,6 +4,7 @@ Here we define the standards and best practices we follow when developing softwa
 In addition, programming language specific guidelines are available in the following documents:
 
 - [C++ Best Practises](best_practises_cpp.md)
+- [Python Best Practises](best_practises_python.md)
 
 ## 1. Documentation
 
