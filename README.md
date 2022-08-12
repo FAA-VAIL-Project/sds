@@ -11,9 +11,9 @@ Furthermore, some background resources are available.
 
 ### Research Papers
 
-- Lui Sha, "Using simplicity to control complexity," in IEEE Software, vol. 18, no. 4, pp. 20-28, July-Aug. 2001, in `docs/papers/lsustcc.pdf`
+- Lui Sha, "Using simplicity to control complexity," in IEEE Software, vol. 18, no. 4, pp. 20-28, July-Aug. 2001, in `docs/papers/using_simplicity_to_control_complexity.pdf`
 
 ### Books
 
-- Cukic, Ivan, "Functional Programming in C++", Manning, 2018, in `docs/books/cifpicpp.pdf`
-- Lott, Steven F., "Functional Python Programming", 2. Edition, Packt Publishing, 2018, in `docs/books/lsfpp.pdf`
+- Cukic, Ivan, "Functional Programming in C++", Manning, 2018, in `docs/books/functional_programming_in_cpp.pdf`
+- Lott, Steven F., "Functional Python Programming", 2. Edition, Packt Publishing, 2018, in `docs/books/functional_python_programming.pdf`
