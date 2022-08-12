@@ -55,4 +55,4 @@ Source: [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008
 
 ### a) Books
 
-- Lott, Steven F., "Functional Python Programming", 2. Edition, Packt Publishing, 2018, in `docs/books/lsfpp.pdf`
+- Lott, Steven F., "Functional Python Programming", 2. Edition, Packt Publishing, 2018, in `docs/books/functional_python_programming.pdf`

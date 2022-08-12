@@ -29,7 +29,7 @@ Here we define the standards and best practices we follow when developing C++ pr
 
 ### a) Books
 
-- Cukic, Ivan, "Functional Programming in C++", Manning, 2018, in `docs/books/cifpicpp.pdf`
+- Cukic, Ivan, "Functional Programming in C++", Manning, 2018, in `docs/books/functional_programming_in_cpp.pdf`
 
 ### b) Web Links
 
