@@ -3,7 +3,7 @@
 This repository contains the development standards and best practices that are mandatory for FAA-VAIL software projects.
 Furthermore, some background resources are available.
 
-### Development Standards and Best Practises
+### Development Standards
 
 - [General](best_practises_software_development.md)
 - [C++](best_practises_cpp.md)

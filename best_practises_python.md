@@ -1,28 +1,36 @@
 # Python Best Practises
 
-Here we define the standards and best practices we follow when developing C++ projects.
+Here we define the standards and best practices we follow when developing Python projects.
 
 ## 1. Repository Layout - Top-Level Directories
 
-Source: [The Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs#tld)
+Source: [Python Application Layouts: A Reference](https://realpython.com/python-application-layouts/)
 
 ## 2. Style
 
-Source: [cppbestpractises](https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html)
+Source: [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)
 
 ## 3. Quality Ensurance Tools
 
 ### a) Formatter
 
-[ClangFormat](https://clang.llvm.org/docs/ClangFormat.html)
+- [black - uncompromising Python code formatter](https://github.com/psf/black)
+- [docformatter - formats docstrings to follow PEP 257](https://github.com/PyCQA/docformatter)
 
 ### b) Static Code Analyser
 
-[Cppcheck](https://cppcheck.sourceforge.io)
-
-[Flawfinder](https://dwheeler.com/flawfinder/)
+- [Bandit - a tool designed to find common security issues in Python code](https://github.com/PyCQA/bandit)
+- [Flake8 - a python tool that glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code](https://github.com/pycqa/flake8)
+  - includes: [mccabe - complexity checker for Python](https://github.com/PyCQA/mccabe)
+  - includes: [pycodestyle - a simple Python style checker in one Python file](https://github.com/PyCQA/pycodestyle)
+  - includes: [pyflakes - a simple program which checks Python source files for errors](https://github.com/PyCQA/pyflakes)
+  - includes: [radon - various code metrics for Python code](https://github.com/rubik/radon)
 
 ### c) Testing Frameworks
+
+[Catch2](https://github.com/catchorg/Catch2)
+
+### d) Documentation
 
 [Catch2](https://github.com/catchorg/Catch2)
 
@@ -34,5 +42,5 @@ Cukic, I., "Functional Programming in C++", Manning, Nov. 2018
 
 ### b) Web Links
 
-- [C++ Best Practices - Erik Rigtorp](https://rigtorp.se/cpp-best-practices/)
-- [cppbestpractises](https://lefticus.gitbooks.io/cpp-best-practices/content/)
+- [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)
+- [Python Application Layouts: A Reference](https://realpython.com/python-application-layouts/)
