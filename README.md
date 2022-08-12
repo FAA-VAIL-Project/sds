@@ -12,9 +12,11 @@ Furthermore, some background resources are available.
 ### Research Papers
 
 Lui Sha, "Using simplicity to control complexity," in IEEE Software, vol. 18, no. 4, pp. 20-28, July-Aug. 2001
+
     `docs/papers/lsustcc.pdf`
 
 ### Books
 
 Cukic, Ivan, "Functional Programming in C++", Manning, Nov. 2018
+
     `docs/books/cifpicpp.pdf`
