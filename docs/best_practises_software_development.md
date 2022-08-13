@@ -32,5 +32,5 @@ Here are all the cross-programming language standards and best practices to be f
 
 ### a) Papers
 
-- [Lui Sha, "Using simplicity to control complexity," in IEEE Software, vol. 18, no. 4, pp. 20-28, July-Aug. 2001](https://ieeexplore.ieee.org/document/936213/citations?tabFilter=papers#citations)
+- [Lui Sha, "Using simplicity to control complexity," in IEEE Software, vol. 18, no. 4, pp. 20-28, July-Aug. 2001](https://ieeexplore.ieee.org/document/936213/citations?tabFilter=papers#citations){:target="_blank"}
 
