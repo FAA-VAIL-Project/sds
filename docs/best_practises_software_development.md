@@ -24,7 +24,7 @@ Here are all the cross-programming language standards and best practices to be f
     - **`index.md`** - home page of the more detailed project description
     - **`license.md`** - the same 
  
-- the project documentation is created with the tool [MkDocs](https://www.mkdocs.org){:target="_blank"}:  `make [-f MakefileOrig] docs`
+- the project documentation is created with the tool [MkDocs](https://www.mkdocs.org){:target="_blank"}:  `make docs`
 
 ## 2. Git & GitHub
 
