@@ -4,34 +4,34 @@ Here we define the standards and best practices we follow when developing C++ pr
 
 ## 1. Repository Layout - Top-Level Directories
 
-- Source: [The Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs#tld)
+- Source: [The Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs#tld){:target="_blank"}
 
 ## 2. Style
 
-- Source: [cppbestpractises](https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html)
+- Source: [cppbestpractises](https://lefticus.gitbooks.io/cpp-best-practices/content/03-Style.html){:target="_blank"}
 
 ## 3. Quality Ensurance Tools
 
 ### a) Formatter
 
-- [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html)
+- [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html){:target="_blank"}
 
 ### b) Static Code Analyser
 
-- [Cppcheck](https://cppcheck.sourceforge.io)
-- [Flawfinder](https://dwheeler.com/flawfinder/)
+- [Cppcheck](https://cppcheck.sourceforge.io){:target="_blank"}
+- [Flawfinder](https://dwheeler.com/flawfinder/){:target="_blank"}
 
 ### c) Testing Frameworks
 
-- [Catch2](https://github.com/catchorg/Catch2)
+- [Catch2](https://github.com/catchorg/Catch2){:target="_blank"}
 
 ## 4. Resources
 
 ### a) Books
 
-- Cukic, Ivan, "Functional Programming in C++", Manning, 2018, in `docs/books/functional_programming_in_cpp.pdf`
+- [Cukic, Ivan, "Functional Programming in C++", Manning Publications Co., 2018](https://www.manning.com/books/functional-programming-in-c-plus-plus){:target="_blank"}
 
 ### b) Web Links
 
-- [C++ Best Practices - Erik Rigtorp](https://rigtorp.se/cpp-best-practices/)
-- [cppbestpractises](https://lefticus.gitbooks.io/cpp-best-practices/content/)
+- [C++ Best Practices - Erik Rigtorp](https://rigtorp.se/cpp-best-practices/){:target="_blank"}
+- [cppbestpractises](https://lefticus.gitbooks.io/cpp-best-practices/content/){:target="_blank"}

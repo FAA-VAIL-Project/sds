@@ -1,9 +1,9 @@
-# openGCAS - Release Notes
+# sds - Release Notes
 
 ![Coveralls GitHub](https://img.shields.io/coveralls/github/FAA-VAIL-Project/openGCA.svg)
-![GitHub (Pre-)Release](https://img.shields.io/github/v/release/FAA-VAIL-Project/openGCAS?include_prereleases)
-![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/FAA-VAIL-Project/openGCAS)
-![GitHub commits since latest release](https://img.shields.io/github/commits-since/FAA-VAIL-Project/openGCAS/0.9.6)
+![GitHub (Pre-)Release](https://img.shields.io/github/v/release/FAA-VAIL-Project/sds?include_prereleases)
+![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/FAA-VAIL-Project/sds)
+![GitHub commits since latest release](https://img.shields.io/github/commits-since/FAA-VAIL-Project/sds/0.9.6)
 
 ## 1. Version 9.9.9 **TODO**
 
