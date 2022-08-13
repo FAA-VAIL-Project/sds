@@ -21,11 +21,11 @@ Source: [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008
 ### b) Static Code Analyser
 
 - [Bandit - a tool designed to find common security issues in Python code](https://github.com/PyCQA/bandit){:target="_blank"}
-- [Flake8 - a python tool that glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code](https://github.com/pycqa/flake8){:target="_blank"}
-  - includes: [mccabe - complexity checker for Python](https://github.com/PyCQA/mccabe){:target="_blank"}
-  - includes: [pycodestyle - a simple Python style checker in one Python file](https://github.com/PyCQA/pycodestyle){:target="_blank"}
-  - includes: [pyflakes - a simple program which checks Python source files for errors](https://github.com/PyCQA/pyflakes){:target="_blank"}
-  - includes: [radon - various code metrics for Python code](https://github.com/rubik/radon){:target="_blank"}
+- [Flake8 - a python tool that glues together pycodestyle, pyflakes, mccabe, and third-party plugins to check the style and quality of some python code](https://github.com/pycqa/flake8){:target="_blank"}, includes:
+    - [mccabe - complexity checker for Python](https://github.com/PyCQA/mccabe){:target="_blank"}
+    - [pycodestyle - a simple Python style checker in one Python file](https://github.com/PyCQA/pycodestyle){:target="_blank"}
+    - [pyflakes - a simple program which checks Python source files for errors](https://github.com/PyCQA/pyflakes){:target="_blank"}
+    - [radon - various code metrics for Python code](https://github.com/rubik/radon){:target="_blank"}
 - [Pylint - it's not just a linter that annoys you](https://github.com/PyCQA/pylint/){:target="_blank"}
 - [mypy - optional static typing for Python](https://github.com/python/mypy){:target="_blank"}
 - [pydocstyle - docstring style checker](https://github.com/PyCQA/pydocstyle){:target="_blank"}
