@@ -20,7 +20,7 @@ nav:
 #     - Release History: 'release_history.md'
   - Code of Conduct: 'code_of_conduct.md'
 # - Contributing Guide: 'contributing.md'
-  - License: '../LICENSE.md'
+  - License: 'LICENSE.md'
 
 plugins:
   - search
