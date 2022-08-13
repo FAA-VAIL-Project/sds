@@ -1,4 +1,4 @@
-# openGCAS - Contributor Covenant Code of Conduct
+# sds - Contributor Covenant Code of Conduct
 
 ## Our Pledge
 
