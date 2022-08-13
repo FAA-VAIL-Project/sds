@@ -1,7 +1,6 @@
 # sds - Programming Language Independent Standards
 
-Here we define the standards and best practices we follow when developing software.
-In addition, programming language specific guidelines are available in the following documents:
+Here are all the cross-programming language standards and best practices to be followed in software development for the FAA-VAIL project.
 
 ## 1. Documentation
 

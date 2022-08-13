@@ -1,6 +1,6 @@
 # sds - C++ Standards
 
-Here we define the standards and best practices we follow when developing C++ projects.
+Here you will find all the standards and best practices to be followed when developing software with the C++ programming language for the FAA-VAIL project.
 
 ## 1. Repository Layout - Top-Level Directories
 
