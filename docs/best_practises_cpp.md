@@ -15,19 +15,19 @@ Here you will find all the standards and best practices to be followed when deve
 ### a) Formatter
 
 - [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html){:target="_blank"}
-    - Visual Studio Code extension: [Clang-Format](https://github.com/xaverh/vscode-clang-format-provider)
+    - Visual Studio Code extension: [Clang-Format](https://github.com/xaverh/vscode-clang-format-provider){:target="_blank"}
 
 ### b) Static Code Analyser
 
 - [Cppcheck](https://cppcheck.sourceforge.io){:target="_blank"}
-    - Visual Studio Code extension: [C/C++ Advanced Lint](https://github.com/jbenden/vscode-c-cpp-flylint)  
+    - Visual Studio Code extension: [C/C++ Advanced Lint](https://github.com/jbenden/vscode-c-cpp-flylint){:target="_blank"}
 - [Flawfinder](https://dwheeler.com/flawfinder/){:target="_blank"}
-    - Visual Studio Code extension: [C/C++ Advanced Lint](https://github.com/jbenden/vscode-c-cpp-flylint)
+    - Visual Studio Code extension: [C/C++ Advanced Lint](https://github.com/jbenden/vscode-c-cpp-flylint){:target="_blank"}
 
 ### c) Testing Frameworks
 
 - [Catch2](https://github.com/catchorg/Catch2){:target="_blank"}
-    - Visual Studio Code Plugin: [C++ TestMate](https://github.com/matepek/vscode-catch2-test-adapter) 
+    - Visual Studio Code Plugin: [C++ TestMate](https://github.com/matepek/vscode-catch2-test-adapter){:target="_blank"}
 
 ## 4. Resources
 
