@@ -27,7 +27,7 @@ Here you will find all the standards and best practices to be followed when deve
 ### c) Testing Frameworks
 
 - [Catch2](https://github.com/catchorg/Catch2){:target="_blank"}
-    - Visual Studio Code Plugin: [C++ TestMate](https://github.com/matepek/vscode-catch2-test-adapter){:target="_blank"}
+    - Visual Studio Code extension: [C++ TestMate](https://github.com/matepek/vscode-catch2-test-adapter){:target="_blank"}
 
 ## 4. Resources
 
