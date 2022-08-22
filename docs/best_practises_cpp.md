@@ -14,16 +14,25 @@ Here you will find all the standards and best practices to be followed when deve
 
 ### a) Formatter
 
-- [ClangFormat](https://clang.llvm.org/docs/ClangFormat.html){:target="_blank"}
+- **ClangFormat** format C/C++ code
+    - [ClangFormat documentation](https://clang.llvm.org/docs/ClangFormat.html){:target="_blank"}
+    - [ClangFormat installation and usage](https://www.dynamsoft.com/codepool/vscode-format-c-code-windows-linux.html){:target="_blank"}
+    - [Visual Studio Code extension Clang-Format](https://github.com/xaverh/vscode-clang-format-provider){:target="_blank"}
 
 ### b) Static Code Analyser
 
-- [Cppcheck](https://cppcheck.sourceforge.io){:target="_blank"}
-- [Flawfinder](https://dwheeler.com/flawfinder/){:target="_blank"}
+- **Cppcheck** a static analysis tool for C/C++ code
+    - [Cppcheck documentation, installation and usage](https://cppcheck.sourceforge.io){:target="_blank"} 
+    - [Visual Studio Code extension C/C++ Advanced Lint](https://github.com/jbenden/vscode-c-cpp-flylint){:target="_blank"}
+- **Flawfinder** reports possible security weaknesses (“flaws”) sorted by risk level
+    - [Flawfinder documentation, installation and usage](https://dwheeler.com/flawfinder/){:target="_blank"} 
+    - [Visual Studio Code extension C/C++ Advanced Lint](https://github.com/jbenden/vscode-c-cpp-flylint){:target="_blank"}
 
 ### c) Testing Frameworks
 
-- [Catch2](https://github.com/catchorg/Catch2){:target="_blank"}
+- **Catch2** a unit testing framework for C++
+    - [Catch2 GitHub repository](https://github.com/catchorg/Catch2){:target="_blank"}
+    - [Visual Studio Code extension C++ TestMate](https://github.com/matepek/vscode-catch2-test-adapter){:target="_blank"}
 
 ## 4. Resources
 
