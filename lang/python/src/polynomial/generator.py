@@ -54,6 +54,8 @@ class Generator:
     @staticmethod
     def _check_config_params() -> None:
         """Check the configuration parameters."""
+        sds_glob.logger.debug(sds_glob.LOGGER_START)
+
         # ERROR.00.907 The number of tasks must be at least 1 and not {no_tasks}
         if sds_glob.inst_config.no_tasks < 1:
             utils.terminate_fatal(
@@ -81,6 +83,8 @@ class Generator:
                 )
             )
 
+        sds_glob.logger.debug(sds_glob.LOGGER_END)
+
     # ------------------------------------------------------------------
     # Create the JSON file.
     # ------------------------------------------------------------------
@@ -102,4 +106,7 @@ class Generator:
         Returns:
             bool: Always true.
         """
+        sds_glob.logger.debug(sds_glob.LOGGER_START)
+        sds_glob.logger.debug(sds_glob.LOGGER_END)
+
         return self._exist

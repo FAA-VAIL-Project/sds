@@ -9,7 +9,7 @@ rem ----------------------------------------------------------------------------
 setlocal EnableDelayedExpansion
 
 set POLYNOMIAL_CHOICE_ACTION_DEFAULT=data
-set POLYNOMIAL_FILE_NAME=lang\polynom_data.json
+set POLYNOMIAL_FILE_NAME=..\polynom_data.json
 set POLYNOMIAL_SETUP_ENVIRONMENT_DEFAULT=no
 
 set "POLYNOMIAL_BENCHMARK_VCVARSALL=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat"
@@ -93,16 +93,19 @@ echo:| TIME
 echo ===============================================================================
 
 if ["%POLYNOMIAL_IS_DATA%"] EQU ["yes"] (
+    cd lang\python
     if ["%POLYNOMIAL_SETUP_ENVIRONMENT%"] EQU ["yes"] (
-        make -f lang\python\Makefile pipenv
+        make pipenv
     )
     echo -------------------------------------------------------------------------------
-    set PYTHONPATH=lang\python\src\polynomial
-    pipenv run python lang\python\src\launcher.py generate
+    set PYTHONPATH=src\polynomial
+    pipenv run python src\launcher.py -a generate
     if ERRORLEVEL 1 (
+        cd ..\..
         echo -------------------------------------------------------------------------------
-        echo Processing of the script: %0 - step: 'python lang\python\src\launcher.py generate
+        echo Processing of the script: %0 - step: 'python src\launcher.py -a generate
     )
+    cd ..\..
 )
 
 echo -------------------------------------------------------------------------------

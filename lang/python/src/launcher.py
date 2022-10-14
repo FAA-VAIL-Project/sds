@@ -46,7 +46,7 @@ def _get_args() -> dict[str, str | list[str]]:
         description="Perform a polynomial process",
         prog="launcher",
         prefix_chars="--",
-        usage="%(prog)s [options]",
+        usage="%(prog)s options",
     )
 
     parser.add_argument(
@@ -63,11 +63,9 @@ def _get_args() -> dict[str, str | list[str]]:
 
     parsed_args = parser.parse_args()
 
-    args[_ARG_ACTION] = parsed_args.Action
+    args[_ARG_ACTION] = parsed_args.action
 
-    if not (
-        args[_ARG_ACTION].lower() not in [_ARG_ACTION_GENERATE, _ARG_ACTION_MULTIPLY]
-    ):
+    if not (args[_ARG_ACTION].lower() in [_ARG_ACTION_GENERATE, _ARG_ACTION_MULTIPLY]):
         utils.terminate_fatal(
             "The specified action is neither '"
             + _ARG_ACTION_GENERATE
@@ -111,10 +109,6 @@ def main(argv: list[str]) -> None:
 
     file_name = os.getenv(sds_glob.POLYNOMIAL_FILE_NAME)
 
-    if not os.path.isfile(file_name):
-        # ERROR.00.902 The specified JSON file {file_name} does not exist
-        utils.terminate_fatal(sds_glob.ERROR_00_902.replace("{file_name}", file_name))
-
     if args[_ARG_ACTION].lower() == _ARG_ACTION_GENERATE:
         generator.Generator(file_name)
     elif args[_ARG_ACTION].lower() == _ARG_ACTION_MULTIPLY:
@@ -124,7 +118,7 @@ def main(argv: list[str]) -> None:
 
     duration = time.time_ns() - start_time
 
-    print(f"{duration:.} ns - Total time launcher")
+    print(f"{f'{duration:,}':>20} ns - Total time launcher")
 
     sds_glob.logger.debug(sds_glob.LOGGER_END)
 

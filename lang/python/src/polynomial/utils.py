@@ -33,6 +33,8 @@ def check_exists_object(
             Check an object of class Config.
             Defaults to False.
     """
+    sds_glob.logger.debug(sds_glob.LOGGER_START)
+
     # ERROR.00.901 The required instance of the class '{Class}'
     # does not yet exist
     if is_config:
@@ -42,6 +44,8 @@ def check_exists_object(
             terminate_fatal(
                 sds_glob.ERROR_00_901.replace("{Class}", "Config"),
             )
+
+    sds_glob.logger.debug(sds_glob.LOGGER_END)
 
 
 # -----------------------------------------------------------------------------

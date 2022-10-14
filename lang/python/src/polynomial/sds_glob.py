@@ -5,8 +5,6 @@
 """Global constants and variables."""
 import logging.config
 
-import sds_config
-
 # Configuration parameter.
 CONFIG_PARAM_DEGREE_MAX = "degree_max"
 CONFIG_PARAM_DEGREE_MIN = "degree_min"
@@ -59,9 +57,6 @@ LOGGER_NAME = "polynomial"
 LOGGER_START = "Start"
 
 POLYNOMIAL_FILE_NAME = "POLYNOMIAL_FILE_NAME"
-
-# Global object instances.
-inst_config: sds_config.Config
 
 # Logger instance.
 logger: logging.Logger = logging.getLogger(LOGGER_NAME)
