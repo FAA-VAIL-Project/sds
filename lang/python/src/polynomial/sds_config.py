@@ -63,8 +63,11 @@ class Config:
         # ------------------------------------------------------------------
         # Initialize configuration parameters.
         # ------------------------------------------------------------------
-        self.degree_min = 3
+        self.coefficient_max = 9999
+        self.coefficient_min = -9999
         self.degree_max = 10
+        self.degree_min = 3
+        self.is_verbose = True
         self.no_tasks = 10
 
         # ------------------------------------------------------------------
@@ -79,6 +82,8 @@ class Config:
 
         if os.path.isfile(config_file):
             self.load_config_file(config_file)
+
+        self._check_config_params()
 
         # INFO.00.002 The configuration parameters (polynomial) are checked and loaded
         utils.progress_msg_core(sds_glob.INFO_00_002)
@@ -103,6 +108,12 @@ class Config:
 
         key_int = key.lower()
 
+        if key_int in sds_glob.CONFIG_PARAM_COEFFICIENT_MAX:
+            self.coefficient_min = self._check_config_value_int(value)
+            return
+        if key_int in sds_glob.CONFIG_PARAM_COEFFICIENT_MIN:
+            self.coefficient_max = self._check_config_value_int(value)
+            return
         if key_int in sds_glob.CONFIG_PARAM_DEGREE_MAX:
             self.degree_min = self._check_config_value_int(value)
             return
@@ -112,11 +123,57 @@ class Config:
         if key_int in sds_glob.CONFIG_PARAM_NO_TASKS:
             self.no_tasks = self._check_config_value_int(value)
             return
+        if key_int in sds_glob.CONFIG_PARAM_VERBOSE:
+            self.is_verbose = self._check_config_value_bool(value)
+            return
 
         # ERROR.00.903 Unknown configuration parameter: Key='{key}' Value='{value}
         utils.terminate_fatal(
             sds_glob.ERROR_00_903.replace("{key}", key).replace("{value}", str(value))
         )
+
+        sds_glob.logger.debug(sds_glob.LOGGER_END)
+
+    # ------------------------------------------------------------------
+    # Check the configuration parameters.
+    # ------------------------------------------------------------------
+    def _check_config_params(self) -> None:
+        """Check the configuration parameters."""
+        sds_glob.logger.debug(sds_glob.LOGGER_START)
+
+        # ERROR.00.907 The number of tasks must be at least 1 and not {no_tasks}
+        if self.no_tasks < 1:
+            utils.terminate_fatal(
+                sds_glob.ERROR_00_907.replace("{no_tasks}", str(self.no_tasks))
+            )
+
+        # ERROR.00.908 The minimum degree must be at least 1 and not {degree_min}
+        if self.degree_min < 1:
+            utils.terminate_fatal(
+                sds_glob.ERROR_00_908.replace("{degree_min}", str(self.degree_min))
+            )
+
+        # ERROR.00.909 The maximum degree {degree_max} must be at least
+        # equal to the minimum degree {degree_min}
+        if self.degree_max < self.degree_min:
+            utils.terminate_fatal(
+                sds_glob.ERROR_00_909.replace(
+                    "{degree_max}",
+                    str(self.degree_max).replace("{degree_min}", str(self.degree_min)),
+                )
+            )
+
+        # ERROR.00.910 The maximum coefficient {coefficient_max} must be at least
+        # equal to the minimum coefficient {coefficient_min}
+        if self.coefficient_max < self.coefficient_min:
+            utils.terminate_fatal(
+                sds_glob.ERROR_00_910.replace(
+                    "{coefficient_max}",
+                    str(self.coefficient_max).replace(
+                        "{coefficient_min}", str(self.coefficient_min)
+                    ),
+                )
+            )
 
         sds_glob.logger.debug(sds_glob.LOGGER_END)
 

@@ -5,10 +5,15 @@
 """Global constants and variables."""
 import logging.config
 
+import sds_config
+
 # Configuration parameter.
+CONFIG_PARAM_COEFFICIENT_MAX = "coefficient_max"
+CONFIG_PARAM_COEFFICIENT_MIN = "coefficient_min"
 CONFIG_PARAM_DEGREE_MAX = "degree_max"
 CONFIG_PARAM_DEGREE_MIN = "degree_min"
 CONFIG_PARAM_NO_TASKS = "no_tasks"
+CONFIG_PARAM_VERBOSE = "verbose"
 
 # Error messages.
 ERROR_00_901 = (
@@ -33,8 +38,12 @@ ERROR_00_906 = (
 ERROR_00_907 = "ERROR.00.907 The number of tasks must be at least 1 and not {no_tasks}"
 ERROR_00_908 = "ERROR.00.908 The minimum degree must be at least 1 and not {degree_min}"
 ERROR_00_909 = (
-    "ERROR.00.909 The maximum degree {} must be at least "
+    "ERROR.00.909 The maximum degree {degree_max} must be at least "
     + "equal to the minimum degree {degree_min}"
+)
+ERROR_00_910 = (
+    "ERROR.00.910 The maximum coefficient {coefficient_max} must be at least "
+    + "equal to the minimum coefficient {coefficient_min}"
 )
 
 # Default file encoding UTF-8.
@@ -57,6 +66,8 @@ LOGGER_NAME = "polynomial"
 LOGGER_START = "Start"
 
 POLYNOMIAL_FILE_NAME = "POLYNOMIAL_FILE_NAME"
+
+inst_config: sds_config.Config
 
 # Logger instance.
 logger: logging.Logger = logging.getLogger(LOGGER_NAME)

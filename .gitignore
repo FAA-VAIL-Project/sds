@@ -1,3 +1,4 @@
+*.log
+/.history/
 /.idea/
 /site/
-/lang/python/logging_polynomial.log

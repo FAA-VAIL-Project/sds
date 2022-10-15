@@ -100,8 +100,6 @@ def main(argv: list[str]) -> None:
 
     sds_glob.logger.info("Start launcher.py")
 
-    print("Start launcher.py")
-
     locale.setlocale(locale.LC_ALL, _LOCALE)
 
     # Load the command line arguments.
@@ -118,7 +116,10 @@ def main(argv: list[str]) -> None:
 
     duration = time.time_ns() - start_time
 
-    print(f"{f'{duration:,}':>20} ns - Total time launcher")
+    utils.progress_msg(
+        sds_glob.inst_config.is_verbose,
+        f"{f'{duration:,}':>20} ns - Total time launcher",
+    )
 
     sds_glob.logger.debug(sds_glob.LOGGER_END)
 

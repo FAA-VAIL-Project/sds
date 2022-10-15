@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import sds_config
 import sds_glob
-import utils
 
 
 # pylint: disable=too-few-public-methods
@@ -35,8 +34,6 @@ class Generator:
 
         sds_glob.inst_config = sds_config.Config()
 
-        self._check_config_params()
-
         self._polynomials = []
 
         for _ in range(sds_glob.inst_config.no_tasks):
@@ -45,43 +42,6 @@ class Generator:
         self._create_json_file()
 
         self._exist = True
-
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
-
-    # ------------------------------------------------------------------
-    # Check the configuration parameters.
-    # ------------------------------------------------------------------
-    @staticmethod
-    def _check_config_params() -> None:
-        """Check the configuration parameters."""
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-
-        # ERROR.00.907 The number of tasks must be at least 1 and not {no_tasks}
-        if sds_glob.inst_config.no_tasks < 1:
-            utils.terminate_fatal(
-                sds_glob.ERROR_00_907.replace(
-                    "{no_tasks}", str(sds_glob.inst_config.no_tasks)
-                )
-            )
-
-        # ERROR.00.908 The minimum degree must be at least 1 and not {degree_min}
-        if sds_glob.inst_config.degree_min < 1:
-            utils.terminate_fatal(
-                sds_glob.ERROR_00_908.replace(
-                    "{degree_min}", str(sds_glob.inst_config.degree_min)
-                )
-            )
-
-        #
-        if sds_glob.inst_config.degree_max < sds_glob.inst_config.degree_min:
-            utils.terminate_fatal(
-                sds_glob.ERROR_00_909.replace(
-                    "{degree_max}",
-                    str(sds_glob.inst_config.degree_max).replace(
-                        "{degree_min}", str(sds_glob.inst_config.degree_min)
-                    ),
-                )
-            )
 
         sds_glob.logger.debug(sds_glob.LOGGER_END)
 
