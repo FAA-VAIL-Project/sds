@@ -5,8 +5,7 @@
 """Generation of a JSON file with given polynomials."""
 from __future__ import annotations
 
-import sds_config
-import sds_glob
+from polynomial import sds_glob
 
 
 # pylint: disable=too-few-public-methods
@@ -31,8 +30,6 @@ class Generator:
         sds_glob.logger.debug(sds_glob.LOGGER_START)
 
         self._file_name = file_name
-
-        sds_glob.inst_config = sds_config.Config()
 
         self._polynomials = []
 

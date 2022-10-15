@@ -67,7 +67,7 @@ LOGGER_START = "Start"
 
 POLYNOMIAL_FILE_NAME = "POLYNOMIAL_FILE_NAME"
 
-inst_config: sds_config.Config
+inst_config: sds_config.Config = sds_config.Config()
 
 # Logger instance.
 logger: logging.Logger = logging.getLogger(LOGGER_NAME)

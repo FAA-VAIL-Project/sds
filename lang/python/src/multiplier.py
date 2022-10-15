@@ -7,8 +7,8 @@ from __future__ import annotations
 
 import os
 
-import sds_glob
-import utils
+from polynomial import sds_glob
+from polynomial import utils
 
 
 # pylint: disable=too-few-public-methods

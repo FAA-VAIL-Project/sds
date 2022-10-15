@@ -68,14 +68,13 @@ def initialise_logger() -> None:
 # ------------------------------------------------------------------
 # Create a progress message.
 # ------------------------------------------------------------------
-def progress_msg(is_verbose: bool, msg: str) -> None:
+def progress_msg(msg: str) -> None:
     """Create a progress message.
 
     Args:
-        is_verbose (bool): If true, processing results are reported.
         msg (str): Progress message.
     """
-    if is_verbose:
+    if sds_glob.inst_config.is_verbose:
         progress_msg_core(msg)
 
 
@@ -94,6 +93,22 @@ def progress_msg_core(msg: str) -> None:
         final_msg = final_msg + "."
 
     print(final_msg)
+
+
+# ------------------------------------------------------------------
+# Create a progress message.
+# ------------------------------------------------------------------
+def progress_msg_time_elapsed(duration: int, event: str) -> None:
+    """Create a time elapsed message.
+
+    Args:
+        duration (int): Time elapsed in ns.
+        event (str): Event.
+    """
+    if sds_glob.inst_config.is_verbose:
+        progress_msg_core(
+            f"{f'{duration:,}':>20} ns - Total time {event}",
+        )
 
 
 # ------------------------------------------------------------------

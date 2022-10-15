@@ -14,8 +14,8 @@ import os
 import sys
 import time
 
-from polynomial import generator
-from polynomial import multiplier
+import generator
+import multiplier
 from polynomial import sds_glob
 from polynomial import utils
 
@@ -116,9 +116,9 @@ def main(argv: list[str]) -> None:
 
     duration = time.time_ns() - start_time
 
-    utils.progress_msg(
-        sds_glob.inst_config.is_verbose,
-        f"{f'{duration:,}':>20} ns - Total time launcher",
+    utils.progress_msg_time_elapsed(
+        duration,
+        "launcher",
     )
 
     sds_glob.logger.debug(sds_glob.LOGGER_END)

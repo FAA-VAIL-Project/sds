@@ -58,7 +58,6 @@ class Config:
                 The name of the configuration file. Defaults to '"setup.cfg'.
         """
         # pylint: disable=duplicate-code
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
 
         # ------------------------------------------------------------------
         # Initialize configuration parameters.
@@ -90,8 +89,6 @@ class Config:
 
         self.exist = True
 
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
-
     # ------------------------------------------------------------------
     # Check the configuration parameters.
     # ------------------------------------------------------------------
@@ -104,8 +101,6 @@ class Config:
             value (bool | int | str):
                 The given value of the configuration parameter.
         """
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-
         key_int = key.lower()
 
         if key_int in sds_glob.CONFIG_PARAM_COEFFICIENT_MAX:
@@ -132,15 +127,11 @@ class Config:
             sds_glob.ERROR_00_903.replace("{key}", key).replace("{value}", str(value))
         )
 
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
-
     # ------------------------------------------------------------------
     # Check the configuration parameters.
     # ------------------------------------------------------------------
     def _check_config_params(self) -> None:
         """Check the configuration parameters."""
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-
         # ERROR.00.907 The number of tasks must be at least 1 and not {no_tasks}
         if self.no_tasks < 1:
             utils.terminate_fatal(
@@ -175,8 +166,6 @@ class Config:
                 )
             )
 
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
-
     # ------------------------------------------------------------------
     # Check a boolean configuration parameter value.
     # ------------------------------------------------------------------
@@ -194,8 +183,6 @@ class Config:
             bool:
                 The boolean configuration parameter value.
         """
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-
         if isinstance(value, bool):
             return value
 
@@ -206,8 +193,6 @@ class Config:
             # ERROR.00.905 Illegal configuration parameter value '{value}' -
             # only 'false' or 'true' are allowed
             utils.terminate_fatal(sds_glob.ERROR_00_905.replace("{value}", value))
-
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
 
         return True
 
@@ -228,8 +213,6 @@ class Config:
             int:
                 The integer configuration parameter value.
         """
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-
         if isinstance(value, str):
             try:
                 return int(value)
@@ -237,8 +220,6 @@ class Config:
                 # ERROR.00.906 Illegal configuration parameter value '{value}' -
                 # only integers are allowed
                 utils.terminate_fatal(sds_glob.ERROR_00_906.replace("{value}", value))
-
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
 
         return value
 
@@ -251,9 +232,6 @@ class Config:
         Returns:
             bool: Always true.
         """
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
-
         return self.exist
 
     # ------------------------------------------------------------------
@@ -268,8 +246,6 @@ class Config:
             config_file (str):
                 Configuration file name.
         """
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-
         # INFO.00.003 Initialize the configuration parameters using the file {file}
         utils.progress_msg_core(sds_glob.INFO_00_003.replace("{file}", config_file))
 
@@ -280,8 +256,6 @@ class Config:
             if section in (Config._CONFIG_SECTION,):
                 for (key, value) in config_parser.items(section):
                     self._check_config_param(key, value)
-
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
 
     # ------------------------------------------------------------------
     # Modify the value of an existing configuration parameter.
@@ -295,7 +269,4 @@ class Config:
             value (bool | int | str):
                 The new value of the configuration parameter.
         """
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
-
         self._check_config_param(key, value)
