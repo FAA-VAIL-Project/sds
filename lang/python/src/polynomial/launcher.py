@@ -16,8 +16,8 @@ import time
 
 import generator
 import multiplier
-from polynomial import sds_glob
-from polynomial import utils
+import sds_glob
+import utils
 
 # -----------------------------------------------------------------------------
 # Global variables.
@@ -25,6 +25,10 @@ from polynomial import utils
 _ARG_ACTION = "action"
 _ARG_ACTION_GENERATE = "generate"
 _ARG_ACTION_MULTIPLY = "multiply"
+_ARG_METHOD = "method"
+_ARG_METHOD_FFT = "fft"
+_ARG_METHOD_NUMPY = "numpy"
+_ARG_METHOD_SIMPLE = "simple"
 
 _LOCALE = "en_US.UTF-8"
 
@@ -61,11 +65,26 @@ def _get_args() -> dict[str, str | list[str]]:
         type=str,
     )
 
+    parser.add_argument(
+        "-m",
+        "--method",
+        default=_ARG_METHOD_FFT,
+        help="the method to apply: '"
+        + _ARG_METHOD_FFT
+        + "' or '"
+        + _ARG_METHOD_NUMPY
+        + "' or '"
+        + _ARG_METHOD_SIMPLE
+        + "'",
+        metavar="METHOD",
+        type=str,
+    )
+
     parsed_args = parser.parse_args()
 
-    args[_ARG_ACTION] = parsed_args.action
+    args[_ARG_ACTION] = parsed_args.action.lower()
 
-    if not (args[_ARG_ACTION].lower() in [_ARG_ACTION_GENERATE, _ARG_ACTION_MULTIPLY]):
+    if not (args[_ARG_ACTION] in [_ARG_ACTION_GENERATE, _ARG_ACTION_MULTIPLY]):
         utils.terminate_fatal(
             "The specified action is neither '"
             + _ARG_ACTION_GENERATE
@@ -73,6 +92,27 @@ def _get_args() -> dict[str, str | list[str]]:
             + _ARG_ACTION_MULTIPLY
             + f"': {args[_ARG_ACTION]}",
         )
+
+    args[_ARG_METHOD] = parsed_args.method.lower()
+
+    if not (args[_ARG_METHOD] in [_ARG_METHOD_FFT, _ARG_METHOD_NUMPY, _ARG_METHOD_SIMPLE]):
+        utils.terminate_fatal(
+            "The specified method is neither '"
+            + _ARG_METHOD_FFT
+            + "', '"
+            + _ARG_METHOD_NUMPY
+            + "' nor '"
+            + _ARG_METHOD_SIMPLE
+            + f"': {args[_ARG_METHOD]}",
+        )
+
+    # INFO.00.006 Argument {arg}='{value}'
+    utils.progress_msg(
+        sds_glob.INFO_00_005.replace("{arg}",_ARG_ACTION).replace("{value}",args[_ARG_ACTION])
+    )
+    utils.progress_msg(
+        sds_glob.INFO_00_005.replace("{arg}",_ARG_METHOD).replace("{value}",args[_ARG_METHOD])
+    )
 
     sds_glob.logger.debug(sds_glob.LOGGER_END)
 
@@ -93,12 +133,18 @@ def main(argv: list[str]) -> None:
     # Initialise the logging functionality.
     start_time = time.time_ns()
 
+    utils.progress_msg(
+        "=" * 79
+    )
+    # INFO.00.004 Start Launcher
+    utils.progress_msg(
+        sds_glob.INFO_00_003
+    )
+
     utils.initialise_logger()
 
     sds_glob.logger.debug(sds_glob.LOGGER_START)
     sds_glob.logger.debug("param argv=%s", argv)
-
-    sds_glob.logger.info("Start launcher.py")
 
     locale.setlocale(locale.LC_ALL, _LOCALE)
 
@@ -112,13 +158,19 @@ def main(argv: list[str]) -> None:
     elif args[_ARG_ACTION].lower() == _ARG_ACTION_MULTIPLY:
         multiplier.Multiplier(file_name)
 
-    sds_glob.logger.info("End   launcher.py")
-
-    duration = time.time_ns() - start_time
-
     utils.progress_msg_time_elapsed(
-        duration,
+        time.time_ns() - start_time,
         "launcher",
+    )
+    utils.progress_msg(
+        "-" * 79
+    )
+    # INFO.00.005 End   Launcher
+    utils.progress_msg(
+        sds_glob.INFO_00_006
+    )
+    utils.progress_msg(
+        "=" * 79
     )
 
     sds_glob.logger.debug(sds_glob.LOGGER_END)

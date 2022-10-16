@@ -31,14 +31,7 @@ class Config:
         no_tasks = 10
 
     In case of an error, the instantiation of the Config class is
-    terminated with a Runtime exception.
-
-    Typical usage example:
-
-        from polynomial import sds_config
-
-        my_instance = sds_config.Config(config_file="my_config.txt")
-        my_instance.set_config_value("no_tasks", 10)
+    terminated with a PolynomialError exception.
     """
 
     # ------------------------------------------------------------------
@@ -62,10 +55,10 @@ class Config:
         # ------------------------------------------------------------------
         # Initialize configuration parameters.
         # ------------------------------------------------------------------
-        self.coefficient_max = 9999
-        self.coefficient_min = -9999
-        self.degree_max = 10
-        self.degree_min = 3
+        self.coef_max = 9999
+        self.coef_min = -9999
+        self.degree_max = 15500
+        self.degree_min = 14500
         self.is_verbose = True
         self.no_tasks = 10
 
@@ -103,17 +96,17 @@ class Config:
         """
         key_int = key.lower()
 
-        if key_int in sds_glob.CONFIG_PARAM_COEFFICIENT_MAX:
-            self.coefficient_min = self._check_config_value_int(value)
+        if key_int in sds_glob.CONFIG_PARAM_COEF_MAX:
+            self.coef_max = self._check_config_value_int(value)
             return
-        if key_int in sds_glob.CONFIG_PARAM_COEFFICIENT_MIN:
-            self.coefficient_max = self._check_config_value_int(value)
+        if key_int in sds_glob.CONFIG_PARAM_COEF_MIN:
+            self.coef_min = self._check_config_value_int(value)
             return
         if key_int in sds_glob.CONFIG_PARAM_DEGREE_MAX:
-            self.degree_min = self._check_config_value_int(value)
+            self.degree_max = self._check_config_value_int(value)
             return
         if key_int in sds_glob.CONFIG_PARAM_DEGREE_MIN:
-            self.degree_max = self._check_config_value_int(value)
+            self.degree_min = self._check_config_value_int(value)
             return
         if key_int in sds_glob.CONFIG_PARAM_NO_TASKS:
             self.no_tasks = self._check_config_value_int(value)
@@ -154,15 +147,13 @@ class Config:
                 )
             )
 
-        # ERROR.00.910 The maximum coefficient {coefficient_max} must be at least
-        # equal to the minimum coefficient {coefficient_min}
-        if self.coefficient_max < self.coefficient_min:
+        # ERROR.00.910 The maximum coef {coef_max} must be at least
+        # equal to the minimum coef {coef_min}
+        if self.coef_max < self.coef_min:
             utils.terminate_fatal(
                 sds_glob.ERROR_00_910.replace(
-                    "{coefficient_max}",
-                    str(self.coefficient_max).replace(
-                        "{coefficient_min}", str(self.coefficient_min)
-                    ),
+                    "{coef_max}",
+                    str(self.coef_max).replace("{coef_min}", str(self.coef_min)),
                 )
             )
 
@@ -247,7 +238,7 @@ class Config:
                 Configuration file name.
         """
         # INFO.00.003 Initialize the configuration parameters using the file {file}
-        utils.progress_msg_core(sds_glob.INFO_00_003.replace("{file}", config_file))
+        utils.progress_msg_core(sds_glob.INFO_00_001.replace("{file}", config_file))
 
         config_parser = configparser.ConfigParser()
         config_parser.read(config_file)

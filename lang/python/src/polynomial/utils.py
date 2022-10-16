@@ -62,7 +62,7 @@ def initialise_logger() -> None:
     sds_glob.logger.setLevel(logging.DEBUG)
 
     # The logger is configured and ready.
-    progress_msg_core(sds_glob.INFO_00_001)
+    progress_msg_core(sds_glob.INFO_00_004)
 
 
 # ------------------------------------------------------------------

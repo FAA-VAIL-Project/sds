@@ -9,8 +9,9 @@ set -e
 # ----------------------------------------------------------------------------------
 
 export POLYNOMIAL_CHOICE_ACTION_DEFAULT=data
+export POLYNOMIAL_CHOICE_METHOD_DEFAULT=fft
+export POLYNOMIAL_CHOICE_SETUP_DEFAULT=no
 export POLYNOMIAL_FILE_NAME=lang/polynom_data.json
-export POLYNOMIAL_SETUP_ENVIRONMENT_DEFAULT=no
 
 rm -f run_demo.log
 
@@ -33,18 +34,36 @@ else
     export POLYNOMIAL_CHOICE_ACTION=$1
 fi
 
-if [ -z "$2" ]; then
+if [ "${POLYNOMIAL_CHOICE_ACTION}" != "data" ]; then
+    if [ -z "$2" ]; then
+        echo "=============================================================================="
+        echo "fft                  - Fast Fourier Transform      - Python"
+        echo "numpy                - NumPy                       - Python"
+        echo "simple               - Simple multiplication       - Python"
+        echo "------------------------------------------------------------------------------"
+        read -rp "Enter the desired action [default: ${POLYNOMIAL_CHOICE_METHOD_DEFAULT}] " POLYNOMIAL_CHOICE_METHOD
+        export POLYNOMIAL_CHOICE_METHOD=${POLYNOMIAL_CHOICE_METHOD}
+
+        if [ -z "${POLYNOMIAL_CHOICE_METHOD}" ]; then
+            export POLYNOMIAL_CHOICE_METHOD=${POLYNOMIAL_CHOICE_METHOD_DEFAULT}
+        fi
+    else
+        export POLYNOMIAL_CHOICE_METHOD=$2
+    fi
+fi
+
+if [ -z "$3" ]; then
     echo "=============================================================================="
     echo "Setup Environment    - yes / no."
     echo "------------------------------------------------------------------------------"
-    read -rp "Enter the desired action [default: ${POLYNOMIAL_SETUP_ENVIRONMENT_DEFAULT}] " POLYNOMIAL_SETUP_ENVIRONMENT
-    export POLYNOMIAL_SETUP_ENVIRONMENT=${POLYNOMIAL_SETUP_ENVIRONMENT}
+    read -rp "Enter the desired action [default: ${POLYNOMIAL_CHOICE_SETUP_DEFAULT}] " POLYNOMIAL_CHOICE_SETUP
+    export POLYNOMIAL_CHOICE_SETUP=${POLYNOMIAL_CHOICE_SETUP}
 
-    if [ -z "${POLYNOMIAL_SETUP_ENVIRONMENT}" ]; then
-        export POLYNOMIAL_SETUP_ENVIRONMENT=${POLYNOMIAL_SETUP_ENVIRONMENT_DEFAULT}
+    if [ -z "${POLYNOMIAL_CHOICE_SETUP}" ]; then
+        export POLYNOMIAL_CHOICE_SETUP=${POLYNOMIAL_CHOICE_SETUP_DEFAULT}
     fi
 else
-    export POLYNOMIAL_SETUP_ENVIRONMENT=$2
+    export POLYNOMIAL_CHOICE_SETUP=$3
 fi
 
 export POLYNOMIAL_IS_CPP=false
@@ -84,8 +103,11 @@ echo "--------------------------------------------------------------------------
 echo "Polynomial Multiplication."
 echo "------------------------------------------------------------------------------"
 echo "CHOICE_ACTION        : ${POLYNOMIAL_CHOICE_ACTION}"
+if [ "${POLYNOMIAL_IS_DATA}" != "true" ]; then
+    echo "SETUP_METHOD         : ${POLYNOMIAL_CHOICE_METHOD}"
+fi
 if [ "${POLYNOMIAL_IS_DATA}" = "true" ]; then
-    echo "SETUP_ENVIRONMENT    : ${POLYNOMIAL_SETUP_ENVIRONMENT}"
+    echo "SETUP_ENVIRONMENT    : ${POLYNOMIAL_CHOICE_SETUP}"
 fi
 echo "------------------------------------------------------------------------------"
 echo "C++                  : ${POLYNOMIAL_IS_CPP}"
@@ -97,14 +119,29 @@ date +"DATE TIME : %d.%m.%Y %H:%M:%S"
 echo "=============================================================================="
 
 if [ "${POLYNOMIAL_IS_DATA}" = "true" ]; then
-    if [ "${POLYNOMIAL_SETUP_ENVIRONMENT}" = "true" ]; then
+    cd lang/python
+    if [ "${POLYNOMIAL_CHOICE_SETUP}" = "true" ]; then
         make -f lang/python\Makefile pipenv
     fi
     echo -------------------------------------------------------------------------------
     export PYTHONPATH=lang\python\src\polynomial
-    if ! { pipenv run python lang\python\src\launcher.py generate; }; then
+    if ! { pipenv run python lang\python\src\launcher.py -a generate; }; then
         exit 255
     fi
+    cd ../..
+fi
+
+if [ "${POLYNOMIAL_IS_PYTHON}" = "true" ]; then
+    cd lang/python
+    if [ "${POLYNOMIAL_CHOICE_SETUP}" = "true" ]; then
+        make -f lang/python\Makefile pipenv
+    fi
+    echo -------------------------------------------------------------------------------
+    export PYTHONPATH=lang\python\src\polynomial
+    if ! { pipenv run python lang\python\src\launcher.py -a multiply - m ${POLYNOMIAL_CHOICE_METHOD}; }; then
+        exit 255
+    fi
+    cd ../..
 fi
 
 echo ""

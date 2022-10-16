@@ -1,4 +1,5 @@
 *.log
 /.history/
 /.idea/
+/lang/polynom_data.json
 /site/
