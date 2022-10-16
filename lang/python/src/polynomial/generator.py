@@ -2,25 +2,27 @@
 # Use of this source code is governed by the GNU LESSER GENERAL
 # PUBLIC LICENSE, that can be found in the LICENSE.md file.
 
-"""Generation of a JSON file with given polynomials."""
+"""Class for generating a JSON file with polynomials.."""
 from __future__ import annotations
 
 import json
 import random
 import time
+from typing import Tuple
 
 import numpy
-import sds_glob
-import utils
+import sds_glob  # type: ignore
+import utils  # type: ignore
 from numpy.polynomial import Polynomial
 
 
 # pylint: disable=too-few-public-methods
 class Generator:
-    """Generation of a JSON file with given polynomials.
+    """Class for generating a JSON file with polynomials..
 
-    Generation of a JSON file with a given number of randomly generated
-    pairs of polynomials and their multiplication result.
+    Using configuration parameters in the 'setup.cfg' file, a JSON file
+    containing polynomial pairs and their product can be generated with
+    an instance of this class.
     """
 
     # ------------------------------------------------------------------
@@ -36,48 +38,75 @@ class Generator:
         # pylint: disable=duplicate-code
         sds_glob.logger.debug(sds_glob.LOGGER_START)
 
-        utils.progress_msg(
-            "-"*79
-        )
+        # Provide progress messages.
+        utils.progress_msg("-" * 79)
         # INFO.00.011 Start Generator
-        utils.progress_msg(
-            sds_glob.INFO_00_011
-        )
-        utils.progress_msg(
-            "-"*79
-        )
+        utils.progress_msg(sds_glob.INFO_00_011)
+        utils.progress_msg("-" * 79)
 
         self._file_name = file_name
 
-        self._polynomials = []
+        # Create polynomial pairs with random values and calculate
+        # the product. Each generated triple defines a task for the
+        # 'Multiplier' class.
+        self._tasks = []
 
         for no_task in range(sds_glob.inst_config.no_tasks):
-            self._polynomials.append(self._generate_polynom(no_task))
+            self._tasks.append(self._generate_polynom(no_task))
 
+        # Write the generated polynomials along with their product
+        # to a JSON file for use in the 'Multiplier' class.
         self._create_json_file()
 
-        self._exist = True
-
-        utils.progress_msg(
-            "-"*79
-        )
+        # Provide progress messages.
+        utils.progress_msg("-" * 79)
         # INFO.00.012 End   Generator
-        utils.progress_msg(
-            sds_glob.INFO_00_012
-        )
-        utils.progress_msg(
-            "-"*79
-        )
+        utils.progress_msg(sds_glob.INFO_00_012)
+        utils.progress_msg("-" * 79)
+
         sds_glob.logger.debug(sds_glob.LOGGER_END)
 
     # ------------------------------------------------------------------
     # Create the JSON file.
     # ------------------------------------------------------------------
     def _create_json_file(self) -> None:
-        """Create the JSON file."""
+        """Create the JSON file.
 
+        The file structure looks as follows:
+
+            {
+                "moTasks": 999,
+                "tasks": [
+                    {
+                        "taskNo": 999,
+                        "polynom1": {
+                            "degree": 999,
+                            "coefficients": [
+                                999,
+                                ...
+                            ]
+                        },
+                        "polynom2": {
+                            "degree": 999,
+                            "coefficients": [
+                                999,
+                                ...
+                            ]
+                        },
+                        "product": {
+                            "degree": 999,
+                            "coefficients": [
+                                999,
+                                ...
+                            ]
+                        }
+                    },
+                    ...
+                ]
+            }
+        """
         tasks = []
-        for task_no, (polynom_1, polynom_2, product) in enumerate(self._polynomials):
+        for task_no, (polynom_1, polynom_2, product) in enumerate(self._tasks):
             tasks.append(
                 {
                     sds_glob.JSON_NAME_TASK_NO: task_no + 1,
@@ -116,13 +145,19 @@ class Generator:
             )
 
     # ------------------------------------------------------------------
-    # Generate the polynom.
+    # Generation of a polynomial pair and calculation of its product.
     # ------------------------------------------------------------------
     @staticmethod
-    def _generate_polynom(no_task: int) -> (Polynomial, Polynomial, Polynomial):
-        """Generate the polynom."""
+    def _generate_polynom(no_task: int) -> Tuple[Polynomial, Polynomial, Polynomial]:
+        """Generation of a polynomial pair and calculation of its product.
+
+        The degree of the polynomials and the coefficients are
+        determined in a given range as random integers
+        """
+        # Start time measurement.
         start_time = time.time_ns()
 
+        # Creation of the first polynomial.
         polynom_1 = Polynomial(
             numpy.random.randint(
                 sds_glob.inst_config.coef_min,
@@ -133,6 +168,7 @@ class Generator:
             )
         )
 
+        # Creation of the second polynomial.
         polynom_2 = Polynomial(
             numpy.random.randint(
                 sds_glob.inst_config.coef_min,
@@ -143,8 +179,10 @@ class Generator:
             )
         )
 
+        # Calculation of the product.
         product = polynom_1 * polynom_2
 
+        # Stop time measurement and store the results.
         utils.progress_msg_time_elapsed(
             time.time_ns() - start_time,
             f"polynom no. {no_task + 1:2d} (degrees: {polynom_1.degree():5d} - "
@@ -152,17 +190,3 @@ class Generator:
         )
 
         return polynom_1, polynom_2, product
-
-    # ------------------------------------------------------------------
-    # Check the object existence.
-    # ------------------------------------------------------------------
-    def exists(self) -> bool:
-        """Check the object existence.
-
-        Returns:
-            bool: Always true.
-        """
-        sds_glob.logger.debug(sds_glob.LOGGER_START)
-        sds_glob.logger.debug(sds_glob.LOGGER_END)
-
-        return self._exist

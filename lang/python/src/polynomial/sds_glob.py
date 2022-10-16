@@ -7,6 +7,12 @@ import logging.config
 
 import sds_config
 
+ARG_ACTION_GENERATE = "generate"
+ARG_ACTION_MULTIPLY = "multiply"
+ARG_METHOD_FFT = "fft"
+ARG_METHOD_NUMPY = "numpy"
+ARG_METHOD_SIMPLE = "simple"
+
 # Configuration parameter.
 CONFIG_PARAM_COEF_MAX = "coef_max"
 CONFIG_PARAM_COEF_MIN = "coef_min"
@@ -45,6 +51,10 @@ ERROR_00_910 = (
     "ERROR.00.910 The maximum coef {coef_max} must be at least "
     + "equal to the minimum coef {coef_min}"
 )
+ERROR_00_911 = (
+    "ERROR.00.911 Difference in task no. {task_no} degree {degree} "
+    + "got {got} instead of {instead}"
+)
 
 # Default file encoding UTF-8.
 FILE_ENCODING_DEFAULT = "utf-8"
@@ -56,22 +66,14 @@ INFO_00_001 = (
 INFO_00_002 = (
     "INFO.00.002 The configuration parameters (polynomial) are checked and loaded"
 )
-INFO_00_003 = (
-    "INFO.00.003 Start Launcher"
-)
+INFO_00_003 = "INFO.00.003 Start Launcher"
 INFO_00_004 = "INFO.00.004 The logger is configured and ready"
-INFO_00_005 = (
-    "INFO.00.005 Argument {arg}='{value}'"
-)
-INFO_00_006 = (
-    "INFO.00.006 End   Launcher"
-)
-INFO_00_011 = (
-    "INFO.00.011 Start Generator"
-)
-INFO_00_012 = (
-    "INFO.00.012 End   Generator"
-)
+INFO_00_005 = "INFO.00.005 Argument {arg}='{value}'"
+INFO_00_006 = "INFO.00.006 End   Launcher"
+INFO_00_011 = "INFO.00.011 Start Generator"
+INFO_00_012 = "INFO.00.012 End   Generator"
+INFO_00_021 = "INFO.00.021 Start Multiplier - Python - {method}"
+INFO_00_022 = "INFO.00.022 End   Multiplier - Python - {method}"
 
 INFORMATION_NOT_YET_AVAILABLE = "n/a"
 

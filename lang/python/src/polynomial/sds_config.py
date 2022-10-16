@@ -57,8 +57,8 @@ class Config:
         # ------------------------------------------------------------------
         self.coef_max = 9999
         self.coef_min = -9999
-        self.degree_max = 15500
-        self.degree_min = 14500
+        self.degree_max = 5200
+        self.degree_min = 4800
         self.is_verbose = True
         self.no_tasks = 10
 
