@@ -15,6 +15,13 @@ export POLYNOMIAL_FILE_NAME=lang/polynom_data.json
 
 rm -f run_demo.log
 
+export POLYNOMIAL_IS_CPP=false
+export POLYNOMIAL_IS_DATA=false
+export POLYNOMIAL_IS_PYTHON_FFT=false
+export POLYNOMIAL_IS_PYTHON_NUMPY=false
+export POLYNOMIAL_IS_PYTHON_SIMPLE=false
+export POLYNOMIAL_IS_RUST=false
+
 if [ -z "$1" ]; then
     echo "=============================================================================="
     echo "complete             - All implemented programming languages."
@@ -34,7 +41,7 @@ else
     export POLYNOMIAL_CHOICE_ACTION=$1
 fi
 
-if [ "${POLYNOMIAL_CHOICE_ACTION}" != "data" ]; then
+if [ "${POLYNOMIAL_CHOICE_ACTION}" == "python" ]; then
     if [ -z "$2" ]; then
         echo "=============================================================================="
         echo "fft                  - Fast Fourier Transform      - Python"
@@ -66,21 +73,29 @@ else
     export POLYNOMIAL_CHOICE_SETUP=$3
 fi
 
-export POLYNOMIAL_IS_CPP=false
-export POLYNOMIAL_IS_DATA=false
-export POLYNOMIAL_IS_PYTHON=false
-export POLYNOMIAL_IS_RUST=false
-
 if [ "${POLYNOMIAL_CHOICE_ACTION}" = "complete" ]; then
     export POLYNOMIAL_IS_CPP=true
-    export POLYNOMIAL_IS_PYTHON=true
+    export POLYNOMIAL_IS_DATA=true
+    export POLYNOMIAL_IS_PYTHON_FFT=true
+    export POLYNOMIAL_IS_PYTHON_NUMPY=true
+    export POLYNOMIAL_IS_PYTHON_SIMPLE=true
     export POLYNOMIAL_IS_RUST=true
+elif [ "${POLYNOMIAL_CHOICE_ACTION}" = "complete_python" ]; then
+    export POLYNOMIAL_IS_DATA=true
+    export POLYNOMIAL_IS_PYTHON_FFT=true
+    export POLYNOMIAL_IS_PYTHON_NUMPY=true
+    export POLYNOMIAL_IS_PYTHON_SIMPLE=true
 elif [ "${POLYNOMIAL_CHOICE_ACTION}" = "c++" ]; then
     export POLYNOMIAL_IS_CPP=true
 elif [ "${POLYNOMIAL_CHOICE_ACTION}" = "data" ]; then
     export POLYNOMIAL_IS_DATA=true
 elif [ "${POLYNOMIAL_CHOICE_ACTION}" = "python" ]; then
-    export POLYNOMIAL_IS_PYTHON=true
+    if [ "${POLYNOMIAL_CHOICE_METHOD}" = "fft" ]; then
+        export POLYNOMIAL_IS_PYTHON_FFT=true
+    elif [ "${POLYNOMIAL_CHOICE_METHOD}" = "numpy" ]; then
+        export POLYNOMIAL_IS_PYTHON_NUMPY=true
+    elif [ "${POLYNOMIAL_CHOICE_METHOD}" = "single" ]; then
+        export POLYNOMIAL_IS_PYTHON_SINGLE=true
 elif [ "${POLYNOMIAL_CHOICE_ACTION}" = "rust" ]; then
     export POLYNOMIAL_IS_RUST=true
 fi
@@ -103,16 +118,13 @@ echo "--------------------------------------------------------------------------
 echo "Polynomial Multiplication."
 echo "------------------------------------------------------------------------------"
 echo "CHOICE_ACTION        : ${POLYNOMIAL_CHOICE_ACTION}"
-if [ "${POLYNOMIAL_IS_DATA}" != "true" ]; then
-    echo "SETUP_METHOD         : ${POLYNOMIAL_CHOICE_METHOD}"
-fi
-if [ "${POLYNOMIAL_IS_DATA}" = "true" ]; then
-    echo "SETUP_ENVIRONMENT    : ${POLYNOMIAL_CHOICE_SETUP}"
-fi
+echo "SETUP_ENVIRONMENT    : ${POLYNOMIAL_CHOICE_SETUP}"
 echo "------------------------------------------------------------------------------"
 echo "C++                  : ${POLYNOMIAL_IS_CPP}"
 echo "Data                 : ${POLYNOMIAL_IS_DATA}"
-echo "Python               : ${POLYNOMIAL_IS_PYTHON}"
+echo "Python fft           : ${POLYNOMIAL_IS_PYTHON_FFT}"
+echo "Python numpy         : ${POLYNOMIAL_IS_PYTHON_NUMPY}"
+echo "Python simple        : ${POLYNOMIAL_IS_PYTHON_SIMPLE}"
 echo "Rust                 : ${POLYNOMIAL_IS_RUST}"
 echo "------------------------------------------------------------------------------"
 date +"DATE TIME : %d.%m.%Y %H:%M:%S"
@@ -131,14 +143,40 @@ if [ "${POLYNOMIAL_IS_DATA}" = "true" ]; then
     cd ../..
 fi
 
-if [ "${POLYNOMIAL_IS_PYTHON}" = "true" ]; then
+if [ "${POLYNOMIAL_IS_PYTHON_FFT}" = "true" ]; then
     cd lang/python
     if [ "${POLYNOMIAL_CHOICE_SETUP}" = "true" ]; then
         make -f lang/python\Makefile pipenv
     fi
     echo -------------------------------------------------------------------------------
     export PYTHONPATH=lang\python\src\polynomial
-    if ! { pipenv run python lang\python\src\launcher.py -a multiply - m ${POLYNOMIAL_CHOICE_METHOD}; }; then
+    if ! { pipenv run python lang\python\src\launcher.py -a multiply - m fft; }; then
+        exit 255
+    fi
+    cd ../..
+fi
+
+if [ "${POLYNOMIAL_IS_PYTHON_NUMPY}" = "true" ]; then
+    cd lang/python
+    if [ "${POLYNOMIAL_CHOICE_SETUP}" = "true" ]; then
+        make -f lang/python\Makefile pipenv
+    fi
+    echo -------------------------------------------------------------------------------
+    export PYTHONPATH=lang\python\src\polynomial
+    if ! { pipenv run python lang\python\src\launcher.py -a multiply - m numpy; }; then
+        exit 255
+    fi
+    cd ../..
+fi
+
+if [ "${POLYNOMIAL_IS_PYTHON_SIMPLE}" = "true" ]; then
+    cd lang/python
+    if [ "${POLYNOMIAL_CHOICE_SETUP}" = "true" ]; then
+        make -f lang/python\Makefile pipenv
+    fi
+    echo -------------------------------------------------------------------------------
+    export PYTHONPATH=lang\python\src\polynomial
+    if ! { pipenv run python lang\python\src\launcher.py -a multiply - m simple; }; then
         exit 255
     fi
     cd ../..

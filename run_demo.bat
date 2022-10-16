@@ -15,9 +15,17 @@ set POLYNOMIAL_FILE_NAME=..\polynom_data.json
 
 set "POLYNOMIAL_BENCHMARK_VCVARSALL=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat"
 
+set POLYNOMIAL_IS_CPP=no
+set POLYNOMIAL_IS_DATA=no
+set POLYNOMIAL_IS_PYTHON_FFT=no
+set POLYNOMIAL_IS_PYTHON_NUMPY=no
+set POLYNOMIAL_IS_PYTHON_SIMPLE=no
+set POLYNOMIAL_IS_RUST=no
+
 if ["%1"] EQU [""] (
     echo ===============================================================================
     echo complete             - All implemented programming languages.
+    echo complete_python      - All Python related methods (fft, numpy and simple.
     echo data                 - Create task data.
     echo -------------------------------------------------------------------------------
     echo c                    - C++
@@ -33,7 +41,7 @@ if ["%1"] EQU [""] (
     set POLYNOMIAL_CHOICE_ACTION=%1
 )
 
-if ["%POLYNOMIAL_CHOICE_ACTION%"] NEQ ["data"] (
+if ["%POLYNOMIAL_CHOICE_ACTION%"] EQU ["python"] (
     if ["%2"] EQU [""] (
         echo ===============================================================================
         echo fft                  - Fast Fourier Transform      - Python
@@ -63,15 +71,20 @@ if ["%3"] EQU [""] (
     set POLYNOMIAL_CHOICE_SETUP=%3
 )
 
-set POLYNOMIAL_IS_CPP=no
-set POLYNOMIAL_IS_DATA=no
-set POLYNOMIAL_IS_PYTHON=no
-set POLYNOMIAL_IS_RUST=no
-
 if ["%POLYNOMIAL_CHOICE_ACTION%"] EQU ["complete"] (
     set POLYNOMIAL_IS_CPP=yes
-    set POLYNOMIAL_IS_PYTHON=yes
+    set POLYNOMIAL_IS_DATA=yes
+    set POLYNOMIAL_IS_PYTHON_FFT=yes
+    set POLYNOMIAL_IS_PYTHON_NUMPY=yes
+    set POLYNOMIAL_IS_PYTHON_SIMPLE=yes
     set POLYNOMIAL_IS_RUST=yes
+)
+
+if ["%POLYNOMIAL_CHOICE_ACTION%"] EQU ["complete_python"] (
+    set POLYNOMIAL_IS_DATA=yes
+    set POLYNOMIAL_IS_PYTHON_FFT=yes
+    set POLYNOMIAL_IS_PYTHON_NUMPY=yes
+    set POLYNOMIAL_IS_PYTHON_SIMPLE=yes
 )
 
 if ["%POLYNOMIAL_CHOICE_ACTION%"] EQU ["c++"] (
@@ -83,7 +96,15 @@ if ["%POLYNOMIAL_CHOICE_ACTION%"] EQU ["data"] (
 )
 
 if ["%POLYNOMIAL_CHOICE_ACTION%"] EQU ["python"] (
-    set POLYNOMIAL_IS_PYTHON=yes
+    if ["%POLYNOMIAL_CHOICE_METHOD%"] EQU ["fft"] (
+        set POLYNOMIAL_IS_PYTHON_FFT=yes
+    )
+    if ["%POLYNOMIAL_CHOICE_METHOD%"] EQU ["numpy"] (
+        set POLYNOMIAL_IS_PYTHON_NUMPY=yes
+    )
+    if ["%POLYNOMIAL_CHOICE_METHOD%"] EQU ["simple"] (
+        set POLYNOMIAL_IS_PYTHON_SIMPLE=yes
+    )
 )
 
 if ["%POLYNOMIAL_CHOICE_ACTION%"] EQU ["rust"] (
@@ -98,16 +119,13 @@ echo ---------------------------------------------------------------------------
 echo Polynomial Multiplication.
 echo -------------------------------------------------------------------------------
 echo CHOICE_ACTION        : %POLYNOMIAL_CHOICE_ACTION%
-if ["%POLYNOMIAL_CHOICE_ACTION%"] NEQ ["data"] (
-    echo CHOICE_METHOD        : %POLYNOMIAL_CHOICE_METHOD%
-)
-if ["%POLYNOMIAL_IS_DATA%"] EQU ["yes"] (
-    echo CHOICE_SETUP         : %POLYNOMIAL_CHOICE_SETUP%
-)
+echo CHOICE_SETUP         : %POLYNOMIAL_CHOICE_SETUP%
 echo -------------------------------------------------------------------------------
 echo C++                  : %POLYNOMIAL_IS_CPP%
 echo Data                 : %POLYNOMIAL_IS_DATA%
-echo Python               : %POLYNOMIAL_IS_PYTHON%
+echo Python fft           : %POLYNOMIAL_IS_PYTHON_FFT%
+echo Python numpy         : %POLYNOMIAL_IS_PYTHON_NUMPY%
+echo Python simple        : %POLYNOMIAL_IS_PYTHON_SIMPLE%
 echo Rust                 : %POLYNOMIAL_IS_RUST%
 echo -------------------------------------------------------------------------------
 echo:| TIME
@@ -129,18 +147,50 @@ if ["%POLYNOMIAL_IS_DATA%"] EQU ["yes"] (
     cd ..\..
 )
 
-if ["%POLYNOMIAL_IS_PYTHON%"] EQU ["yes"] (
+if ["%POLYNOMIAL_IS_PYTHON_FFT%"] EQU ["yes"] (
     cd lang\python
     if ["%POLYNOMIAL_CHOICE_SETUP%"] EQU ["yes"] (
         make pipenv
     )
     echo -------------------------------------------------------------------------------
     set PYTHONPATH=src\polynomial
-    pipenv run python src\polynomial\launcher.py -a multiply -m %POLYNOMIAL_CHOICE_METHOD%
+    pipenv run python src\polynomial\launcher.py -a multiply -m fft
     if ERRORLEVEL 1 (
         cd ..\..
         echo -------------------------------------------------------------------------------
-        echo Processing of the script: %0 - step: 'python src\polynomial\launcher.py -a multiply -m %POLYNOMIAL_CHOICE_METHOD%
+        echo Processing of the script: %0 - step: 'python src\polynomial\launcher.py -a multiply -m fft
+    )
+    cd ..\..
+)
+
+if ["%POLYNOMIAL_IS_PYTHON_NUMPY%"] EQU ["yes"] (
+    cd lang\python
+    if ["%POLYNOMIAL_CHOICE_SETUP%"] EQU ["yes"] (
+        make pipenv
+    )
+    echo -------------------------------------------------------------------------------
+    set PYTHONPATH=src\polynomial
+    pipenv run python src\polynomial\launcher.py -a multiply -m numpy
+    if ERRORLEVEL 1 (
+        cd ..\..
+        echo -------------------------------------------------------------------------------
+        echo Processing of the script: %0 - step: 'python src\polynomial\launcher.py -a multiply -m numpy
+    )
+    cd ..\..
+)
+
+if ["%POLYNOMIAL_IS_PYTHON_SIMPLE%"] EQU ["yes"] (
+    cd lang\python
+    if ["%POLYNOMIAL_CHOICE_SETUP%"] EQU ["yes"] (
+        make pipenv
+    )
+    echo -------------------------------------------------------------------------------
+    set PYTHONPATH=src\polynomial
+    pipenv run python src\polynomial\launcher.py -a multiply -m simple
+    if ERRORLEVEL 1 (
+        cd ..\..
+        echo -------------------------------------------------------------------------------
+        echo Processing of the script: %0 - step: 'python src\polynomial\launcher.py -a multiply -m simple
     )
     cd ..\..
 )
