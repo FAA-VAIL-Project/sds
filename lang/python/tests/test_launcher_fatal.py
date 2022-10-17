@@ -6,9 +6,6 @@
 import os
 import platform
 
-import pytest
-
-from polynomial import polynomial_error
 from polynomial import sds_glob
 
 # -----------------------------------------------------------------------------
@@ -23,17 +20,14 @@ from polynomial import sds_glob
 def test_launcher_action():
     """Test case: launcher() - Action."""
     # -------------------------------------------------------------------------
-    with pytest.raises(polynomial_error.PolynomialError):
-        if platform.system() == "Windows":
-            os.system(
-                "src\\polynomial\\launcher.py -a "
-                + sds_glob.INFORMATION_NOT_YET_AVAILABLE
-            )
-        elif platform.system() == "Linux":
-            os.system(
-                "src/polynomial/launcher.py -a "
-                + sds_glob.INFORMATION_NOT_YET_AVAILABLE
-            )
+    if platform.system() == "Windows":
+        os.system(
+            "src\\polynomial\\launcher.py -a " + sds_glob.INFORMATION_NOT_YET_AVAILABLE
+        )
+    elif platform.system() == "Linux":
+        os.system(
+            "src/polynomial/launcher.py -a " + sds_glob.INFORMATION_NOT_YET_AVAILABLE
+        )
 
 
 # -----------------------------------------------------------------------------
@@ -42,14 +36,13 @@ def test_launcher_action():
 def test_launcher_method():
     """Test case: launcher() - Method."""
     # -------------------------------------------------------------------------
-    with pytest.raises(polynomial_error.PolynomialError):
-        if platform.system() == "Windows":
-            os.system(
-                "src\\polynomial\\launcher.py -a multiply -m "
-                + sds_glob.INFORMATION_NOT_YET_AVAILABLE
-            )
-        elif platform.system() == "Linux":
-            os.system(
-                "src/polynomial/launcher.py -a multiply -m "
-                + sds_glob.INFORMATION_NOT_YET_AVAILABLE
-            )
+    if platform.system() == "Windows":
+        os.system(
+            "src\\polynomial\\launcher.py -a multiply -m "
+            + sds_glob.INFORMATION_NOT_YET_AVAILABLE
+        )
+    elif platform.system() == "Linux":
+        os.system(
+            "src/polynomial/launcher.py -a multiply -m "
+            + sds_glob.INFORMATION_NOT_YET_AVAILABLE
+        )

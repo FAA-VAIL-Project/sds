@@ -22,9 +22,6 @@ CONFIG_PARAM_NO_TASKS = "no_tasks"
 CONFIG_PARAM_VERBOSE = "verbose"
 
 # Error messages.
-ERROR_00_901 = (
-    "ERROR.00.901 The required instance of the class '{Class}' does not yet exist"
-)
 ERROR_00_902 = "ERROR.00.902 The specified JSON file {file_name} does not exist"
 ERROR_00_903 = (
     "ERROR.00.903 Unknown configuration parameter: Key='{key}' Value='{value}"

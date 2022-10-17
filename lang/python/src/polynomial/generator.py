@@ -18,7 +18,7 @@ from numpy.polynomial import Polynomial
 
 # pylint: disable=too-few-public-methods
 class Generator:
-    """Class for generating a JSON file with polynomials..
+    """Class for generating a JSON file with polynomials.
 
     Using configuration parameters in the 'setup.cfg' file, a JSON file
     containing polynomial pairs and their product can be generated with
@@ -51,7 +51,7 @@ class Generator:
         # 'Multiplier' class.
         self._tasks = []
 
-        for no_task in range(sds_glob.inst_config.no_tasks):
+        for no_task in range(sds_glob.inst_config.get_no_tasks()):
             self._tasks.append(self._generate_polynom(no_task))
 
         # Write the generated polynomials along with their product
@@ -136,7 +136,7 @@ class Generator:
         ) as file_handle:
             json.dump(
                 {
-                    sds_glob.JSON_NAME_NO_TASKS: sds_glob.inst_config.no_tasks,
+                    sds_glob.JSON_NAME_NO_TASKS: sds_glob.inst_config.get_no_tasks(),
                     sds_glob.JSON_NAME_TASKS: tasks,
                 },
                 file_handle,
@@ -160,10 +160,11 @@ class Generator:
         # Creation of the first polynomial.
         polynom_1 = Polynomial(
             numpy.random.randint(
-                sds_glob.inst_config.coef_min,
-                sds_glob.inst_config.coef_max,
+                sds_glob.inst_config.get_coef_min(),
+                sds_glob.inst_config.get_coef_max(),
                 random.randint(  # nosec
-                    sds_glob.inst_config.degree_min, sds_glob.inst_config.degree_max
+                    sds_glob.inst_config.get_degree_min(),
+                    sds_glob.inst_config.get_degree_max(),
                 ),
             )
         )
@@ -171,10 +172,11 @@ class Generator:
         # Creation of the second polynomial.
         polynom_2 = Polynomial(
             numpy.random.randint(
-                sds_glob.inst_config.coef_min,
-                sds_glob.inst_config.coef_max,
+                sds_glob.inst_config.get_coef_min(),
+                sds_glob.inst_config.get_coef_max(),
                 random.randint(  # nosec
-                    sds_glob.inst_config.degree_min, sds_glob.inst_config.degree_max
+                    sds_glob.inst_config.get_degree_min(),
+                    sds_glob.inst_config.get_degree_max(),
                 ),
             )
         )

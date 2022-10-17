@@ -7,9 +7,9 @@ import datetime
 import logging
 import logging.config
 
-import polynomial_error
 import sds_glob
 import yaml
+from polynomial_error import PolynomialError
 
 # ------------------------------------------------------------------
 # Global constants.
@@ -18,34 +18,6 @@ _LOGGER_CFG_FILE = "logging_cfg.yaml"
 _LOGGER_FATAL_HEAD = "FATAL ERROR: program abort =====> "
 _LOGGER_FATAL_TAIL = " <===== FATAL ERROR"
 _LOGGER_PROGRESS_UPDATE = "Progress update "
-
-
-# ------------------------------------------------------------------
-# Check the existence of objects.
-# ------------------------------------------------------------------
-def check_exists_object(
-    is_config: bool = False,
-) -> None:
-    """Check the existence of objects.
-
-    Args:
-        is_config (bool, optional):
-            Check an object of class Config.
-            Defaults to False.
-    """
-    sds_glob.logger.debug(sds_glob.LOGGER_START)
-
-    # ERROR.00.901 The required instance of the class '{Class}'
-    # does not yet exist
-    if is_config:
-        try:
-            sds_glob.inst_config.exists()  # type: ignore
-        except AttributeError:
-            terminate_fatal(
-                sds_glob.ERROR_00_901.replace("{Class}", "Config"),
-            )
-
-    sds_glob.logger.debug(sds_glob.LOGGER_END)
 
 
 # -----------------------------------------------------------------------------
@@ -74,7 +46,7 @@ def progress_msg(msg: str) -> None:
     Args:
         msg (str): Progress message.
     """
-    if sds_glob.inst_config.is_verbose:
+    if sds_glob.inst_config.get_is_verbose():
         progress_msg_core(msg)
 
 
@@ -105,7 +77,7 @@ def progress_msg_time_elapsed(duration: int, event: str) -> None:
         duration (int): Time elapsed in ns.
         event (str): Event.
     """
-    if sds_glob.inst_config.is_verbose:
+    if sds_glob.inst_config.get_is_verbose():
         progress_msg_core(
             f"{f'{duration:,}':>20} ns - Total time {event}",
         )
@@ -125,4 +97,4 @@ def terminate_fatal(error_msg: str) -> None:
     print(_LOGGER_FATAL_HEAD, error_msg, _LOGGER_FATAL_TAIL, sep="")
     print(_LOGGER_FATAL_HEAD)
 
-    raise polynomial_error.PolynomialError(error_msg)
+    raise PolynomialError(error_msg)

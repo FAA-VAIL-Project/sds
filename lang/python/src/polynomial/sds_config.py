@@ -55,12 +55,12 @@ class Config:
         # ------------------------------------------------------------------
         # Initialize configuration parameters.
         # ------------------------------------------------------------------
-        self.coef_max = 9999
-        self.coef_min = -9999
-        self.degree_max = 5200
-        self.degree_min = 4800
-        self.is_verbose = True
-        self.no_tasks = 10
+        self._coef_max = 9999
+        self._coef_min = -9999
+        self._degree_max = 5200
+        self._degree_min = 4800
+        self._is_verbose = True
+        self._no_tasks = 10
 
         # ------------------------------------------------------------------
         # Update optionally the configuration parameters from a
@@ -80,8 +80,6 @@ class Config:
         # INFO.00.002 The configuration parameters (polynomial) are checked and loaded
         utils.progress_msg_core(sds_glob.INFO_00_002)
 
-        self.exist = True
-
     # ------------------------------------------------------------------
     # Check the configuration parameters.
     # ------------------------------------------------------------------
@@ -97,22 +95,22 @@ class Config:
         key_int = key.lower()
 
         if key_int in sds_glob.CONFIG_PARAM_COEF_MAX:
-            self.coef_max = self._check_config_value_int(value)
+            self._coef_max = self._check_config_value_int(value)
             return
         if key_int in sds_glob.CONFIG_PARAM_COEF_MIN:
-            self.coef_min = self._check_config_value_int(value)
+            self._coef_min = self._check_config_value_int(value)
             return
         if key_int in sds_glob.CONFIG_PARAM_DEGREE_MAX:
-            self.degree_max = self._check_config_value_int(value)
+            self._degree_max = self._check_config_value_int(value)
             return
         if key_int in sds_glob.CONFIG_PARAM_DEGREE_MIN:
-            self.degree_min = self._check_config_value_int(value)
+            self._degree_min = self._check_config_value_int(value)
             return
         if key_int in sds_glob.CONFIG_PARAM_NO_TASKS:
-            self.no_tasks = self._check_config_value_int(value)
+            self._no_tasks = self._check_config_value_int(value)
             return
         if key_int in sds_glob.CONFIG_PARAM_VERBOSE:
-            self.is_verbose = self._check_config_value_bool(value)
+            self._is_verbose = self._check_config_value_bool(value)
             return
 
         # ERROR.00.903 Unknown configuration parameter: Key='{key}' Value='{value}
@@ -126,34 +124,36 @@ class Config:
     def _check_config_params(self) -> None:
         """Check the configuration parameters."""
         # ERROR.00.907 The number of tasks must be at least 1 and not {no_tasks}
-        if self.no_tasks < 1:
+        if self._no_tasks < 1:
             utils.terminate_fatal(
-                sds_glob.ERROR_00_907.replace("{no_tasks}", str(self.no_tasks))
+                sds_glob.ERROR_00_907.replace("{no_tasks}", str(self._no_tasks))
             )
 
         # ERROR.00.908 The minimum degree must be at least 1 and not {degree_min}
-        if self.degree_min < 1:
+        if self._degree_min < 1:
             utils.terminate_fatal(
-                sds_glob.ERROR_00_908.replace("{degree_min}", str(self.degree_min))
+                sds_glob.ERROR_00_908.replace("{degree_min}", str(self._degree_min))
             )
 
         # ERROR.00.909 The maximum degree {degree_max} must be at least
         # equal to the minimum degree {degree_min}
-        if self.degree_max < self.degree_min:
+        if self._degree_max < self._degree_min:
             utils.terminate_fatal(
                 sds_glob.ERROR_00_909.replace(
                     "{degree_max}",
-                    str(self.degree_max).replace("{degree_min}", str(self.degree_min)),
+                    str(self._degree_max).replace(
+                        "{degree_min}", str(self._degree_min)
+                    ),
                 )
             )
 
         # ERROR.00.910 The maximum coef {coef_max} must be at least
         # equal to the minimum coef {coef_min}
-        if self.coef_max < self.coef_min:
+        if self._coef_max < self._coef_min:
             utils.terminate_fatal(
                 sds_glob.ERROR_00_910.replace(
                     "{coef_max}",
-                    str(self.coef_max).replace("{coef_min}", str(self.coef_min)),
+                    str(self._coef_max).replace("{coef_min}", str(self._coef_min)),
                 )
             )
 
@@ -215,15 +215,46 @@ class Config:
         return value
 
     # ------------------------------------------------------------------
-    # Check the object existence.
+    # Getter method: coef_max.
     # ------------------------------------------------------------------
-    def exists(self) -> bool:
-        """Check the object existence.
+    def get_coef_max(self) -> int:
+        """Getter method: coef_max."""
+        return self._coef_max
 
-        Returns:
-            bool: Always true.
-        """
-        return self.exist
+    # ------------------------------------------------------------------
+    # Getter method: coef_min.
+    # ------------------------------------------------------------------
+    def get_coef_min(self) -> int:
+        """Getter method: coef_min."""
+        return self._coef_min
+
+    # ------------------------------------------------------------------
+    # Getter method: degree_max.
+    # ------------------------------------------------------------------
+    def get_degree_max(self) -> int:
+        """Getter method: degree_max."""
+        return self._degree_max
+
+    # ------------------------------------------------------------------
+    # Getter method: degree_min.
+    # ------------------------------------------------------------------
+    def get_degree_min(self) -> int:
+        """Getter method: degree_min."""
+        return self._degree_min
+
+    # ------------------------------------------------------------------
+    # Getter method: is_verbose.
+    # ------------------------------------------------------------------
+    def get_is_verbose(self) -> bool:
+        """Getter method: is_verbose."""
+        return self._is_verbose
+
+    # ------------------------------------------------------------------
+    # Getter method: no_tasks.
+    # ------------------------------------------------------------------
+    def get_no_tasks(self) -> int:
+        """Getter method: no_tasks."""
+        return self._no_tasks
 
     # ------------------------------------------------------------------
     # Load and check the configuration parameters from a
@@ -249,6 +280,16 @@ class Config:
                     self._check_config_param(key, value)
 
     # ------------------------------------------------------------------
+    # Setter method: coef.
+    # ------------------------------------------------------------------
+    def set_coef(self, coef_min: int, coef_max: int) -> None:
+        """Getter method: coef_max."""
+        self._coef_min = coef_min
+        self._coef_max = coef_max
+
+        self._check_config_params()
+
+    # ------------------------------------------------------------------
     # Modify the value of an existing configuration parameter.
     # ------------------------------------------------------------------
     def set_config_value(self, key: str, value: bool | int | str) -> None:
@@ -261,3 +302,31 @@ class Config:
                 The new value of the configuration parameter.
         """
         self._check_config_param(key, value)
+
+    # ------------------------------------------------------------------
+    # Setter method: degree.
+    # ------------------------------------------------------------------
+    def set_degree(self, degree_min: int, degree_max: int) -> None:
+        """Getter method: degree_max."""
+        self._degree_min = degree_min
+        self._degree_max = degree_max
+
+        self._check_config_params()
+
+    # ------------------------------------------------------------------
+    # Setter method: is_verbose.
+    # ------------------------------------------------------------------
+    def set_is_verbose(self, is_verbose: bool) -> None:
+        """Getter method: is_verbose_max."""
+        self._is_verbose = is_verbose
+
+        self._check_config_params()
+
+    # ------------------------------------------------------------------
+    # Setter method: no_tasks.
+    # ------------------------------------------------------------------
+    def set_no_tasks(self, no_tasks: int) -> None:
+        """Getter method: no_tasks_max."""
+        self._no_tasks = no_tasks
+
+        self._check_config_params()

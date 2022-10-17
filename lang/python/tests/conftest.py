@@ -138,9 +138,9 @@ def set_sds_config() -> None:
     """Set the configuration variables."""
     sds_glob.inst_config = sds_config.Config()
 
-    sds_glob.inst_config.coef_max = 19
-    sds_glob.inst_config.coef_min = -19
-    sds_glob.inst_config.degree_max = 5
-    sds_glob.inst_config.degree_min = 3
-    sds_glob.inst_config.is_verbose = True
-    sds_glob.inst_config.no_tasks = 10
+    sds_glob.inst_config._coef_max = 19
+    sds_glob.inst_config._coef_min = -19
+    sds_glob.inst_config._degree_max = 5
+    sds_glob.inst_config._degree_min = 3
+    sds_glob.inst_config._is_verbose = True
+    sds_glob.inst_config._no_tasks = 10
