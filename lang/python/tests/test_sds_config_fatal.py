@@ -8,7 +8,7 @@ import pytest
 
 from polynomial import sds_config
 from polynomial import sds_glob
-from polynomial.polynomial_error import PolynomialError
+from polynomial import polynomial_error
 
 # -----------------------------------------------------------------------------
 # Constants & Globals.
@@ -24,14 +24,14 @@ def test_error_00_903():
     """Test ERROR_00_903."""
     sds_glob.inst_config = sds_config.Config()
 
-    with pytest.raises(PolynomialError) as expt:
+    with pytest.raises(polynomial_error.PolynomialError) as expt:
         sds_config.Config(
             pytest.helpers.get_full_name_from_components(
                 pytest.helpers.get_test_files_source_directory_name(), "setup_903.cfg"
             )
         )
 
-    assert expt.type == PolynomialError, "ERROR.00.903"
+    assert expt.type == polynomial_error.PolynomialError, "ERROR.00.903"
     assert str(expt.value)[:12] == "ERROR.00.903"
 
 
@@ -43,14 +43,14 @@ def test_error_00_904():
     """Test ERROR_00_904."""
     sds_glob.inst_config = sds_config.Config()
 
-    with pytest.raises(PolynomialError) as expt:
+    with pytest.raises(polynomial_error.PolynomialError) as expt:
         sds_config.Config(
             pytest.helpers.get_full_name_from_components(
                 pytest.helpers.get_test_files_source_directory_name(), "setup_904.cfg"
             )
         )
 
-    assert expt.type == PolynomialError, "ERROR.00.904"
+    assert expt.type == polynomial_error.PolynomialError, "ERROR.00.904"
     assert str(expt.value)[:12] == "ERROR.00.904"
 
 
@@ -62,14 +62,14 @@ def test_error_00_905():
     """Test ERROR_00_905."""
     sds_glob.inst_config = sds_config.Config()
 
-    with pytest.raises(PolynomialError) as expt:
+    with pytest.raises(polynomial_error.PolynomialError) as expt:
         sds_config.Config(
             pytest.helpers.get_full_name_from_components(
                 pytest.helpers.get_test_files_source_directory_name(), "setup_905.cfg"
             )
         )
 
-    assert expt.type == PolynomialError, "ERROR.00.905"
+    assert expt.type == polynomial_error.PolynomialError, "ERROR.00.905"
     assert str(expt.value)[:12] == "ERROR.00.905"
 
 
@@ -81,14 +81,14 @@ def test_error_00_906():
     """Test ERROR_00_906."""
     sds_glob.inst_config = sds_config.Config()
 
-    with pytest.raises(PolynomialError) as expt:
+    with pytest.raises(polynomial_error.PolynomialError) as expt:
         sds_config.Config(
             pytest.helpers.get_full_name_from_components(
                 pytest.helpers.get_test_files_source_directory_name(), "setup_906.cfg"
             )
         )
 
-    assert expt.type == PolynomialError, "ERROR.00.906"
+    assert expt.type == polynomial_error.PolynomialError, "ERROR.00.906"
     assert str(expt.value)[:12] == "ERROR.00.906"
 
 
@@ -100,10 +100,10 @@ def test_error_00_907():
     """Test ERROR_00_907."""
     sds_glob.inst_config = sds_config.Config()
 
-    with pytest.raises(PolynomialError) as expt:
+    with pytest.raises(polynomial_error.PolynomialError) as expt:
         sds_glob.inst_config.set_no_tasks(0)
 
-    assert expt.type == PolynomialError, "ERROR.00.907"
+    assert expt.type == polynomial_error.PolynomialError, "ERROR.00.907"
     assert str(expt.value)[:12] == "ERROR.00.907"
 
 
@@ -115,10 +115,10 @@ def test_error_00_908():
     """Test ERROR_00_908."""
     sds_glob.inst_config = sds_config.Config()
 
-    with pytest.raises(PolynomialError) as expt:
+    with pytest.raises(polynomial_error.PolynomialError) as expt:
         sds_glob.inst_config.set_degree(0, 1)
 
-    assert expt.type == PolynomialError, "ERROR.00.908"
+    assert expt.type == polynomial_error.PolynomialError, "ERROR.00.908"
     assert str(expt.value)[:12] == "ERROR.00.908"
 
 
@@ -130,10 +130,10 @@ def test_error_00_909():
     """Test ERROR_00_909."""
     sds_glob.inst_config = sds_config.Config()
 
-    with pytest.raises(PolynomialError) as expt:
+    with pytest.raises(polynomial_error.PolynomialError) as expt:
         sds_glob.inst_config.set_degree(1, 0)
 
-    assert expt.type == PolynomialError, "ERROR.00.909"
+    assert expt.type == polynomial_error.PolynomialError, "ERROR.00.909"
     assert str(expt.value)[:12] == "ERROR.00.909"
 
 
@@ -145,8 +145,8 @@ def test_error_00_910():
     """Test ERROR_00_910."""
     sds_glob.inst_config = sds_config.Config()
 
-    with pytest.raises(PolynomialError) as expt:
+    with pytest.raises(polynomial_error.PolynomialError) as expt:
         sds_glob.inst_config.set_coef(1, 0)
 
-    assert expt.type == PolynomialError, "ERROR.00.910"
+    assert expt.type == polynomial_error.PolynomialError, "ERROR.00.910"
     assert str(expt.value)[:12] == "ERROR.00.910"
