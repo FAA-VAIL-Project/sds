@@ -19,7 +19,7 @@ handlers:
     formatter: extended
 
 loggers:
-  io-raster:
+  sds:
     handlers: [ console ]
 root:
   handlers: [ file_handler ]

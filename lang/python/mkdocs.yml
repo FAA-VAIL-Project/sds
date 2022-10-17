@@ -1,4 +1,4 @@
-copyright: Copyright &copy;2022, IO-Aero.
+copyright: Copyright &copy;2022, Loyd Hook IV.
 
 edit_uri: ""
 
@@ -55,20 +55,20 @@ plugins:
   - search
 
 repo_name: GitHub
-repo_url: https://github.com/io-aero/io-raster
+repo_url: https://github.com/FAA-VAIL-Project/sds
 
-site_name: IO-RASTER - Raster Map Handler Library
-site_url: https://io-aero.com/
-site_description: Raster Map Handler Library
-site_author: IO-Aero Team
+site_name: sds - Software Development Standards
+# site_url: **TODO**
+site_description: Software Development Standards
+site_author: FAA-VAIL-Project Team
 
 theme:
-  favicon: img/IO-Aero Logo.png
+  favicon: img/Icon.png
   features:
     - search.highlight
     - search.suggest
   language: en
-  logo: img/IO-Aero Logo.png
+  logo: img/VAILLogo.png
   name: material
   palette:
     primary: blue

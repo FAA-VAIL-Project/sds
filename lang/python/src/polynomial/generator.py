@@ -185,7 +185,7 @@ class Generator:
         # Stop time measurement and store the results.
         utils.progress_msg_time_elapsed(
             time.time_ns() - start_time,
-            f"polynom no. {no_task + 1:2d} (degrees: {polynom_1.degree():5d} - "
+            f"polynomial no. {no_task + 1:2d} (degrees: {polynom_1.degree():5d} - "
             + f"{polynom_2.degree():5d} - {product.degree():5d}) generated",
         )
 
