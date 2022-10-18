@@ -1,0 +1,17 @@
+[tool.bandit]
+
+[tool.isort]
+float_to_top = true
+force_single_line = true
+overwrite_in_place = true
+profile = "black"
+
+[tool.pydocstyle]
+match = '((?!test_).*\.py)'
+
+[tool.pytest.ini_options]
+console_output_style = "count"
+markers = ["issue"]
+norecursedirs = "./tests/helpers"
+pythonpath = "./src/"
+testpaths = "./tests/"

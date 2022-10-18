@@ -1,2 +1,6 @@
+*.log
+/.history/
 /.idea/
+/lang/polynom_data.json
+/lang/python/.coverage
 /site/

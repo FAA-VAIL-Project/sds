@@ -1,4 +1,4 @@
-# sds - C++ Standards
+# SDS - C++ Standards
 
 Here you will find all the standards and best practices to be followed when developing software with the C++ programming language for the FAA-VAIL project.
 
@@ -36,11 +36,6 @@ Here you will find all the standards and best practices to be followed when deve
 
 ## 4. Resources
 
-### a) Books
-
-- [Cukic, Ivan, "Functional Programming in C++", Manning Publications Co., 2018](https://www.manning.com/books/functional-programming-in-c-plus-plus){:target="_blank"}
-
-### b) Web Links
-
-- [C++ Best Practices - Erik Rigtorp](https://rigtorp.se/cpp-best-practices/){:target="_blank"}
-- [cppbestpractises](https://lefticus.gitbooks.io/cpp-best-practices/content/){:target="_blank"}
+- **Book**: [Cukic, Ivan, "Functional Programming in C++", Manning Publications Co., 2018](https://www.manning.com/books/functional-programming-in-c-plus-plus){:target="_blank"}
+- **Link**: [C++ Best Practices - Erik Rigtorp](https://rigtorp.se/cpp-best-practices/){:target="_blank"}
+- **Link**: [cppbestpractises](https://lefticus.gitbooks.io/cpp-best-practices/content/){:target="_blank"}

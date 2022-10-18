@@ -1,4 +1,4 @@
-# sds - Python Standards
+# SDS - Python - Standards
 
 Here you will find all the standards and best practices to be followed when developing software with the Python programming language for the FAA-VAIL project.
 
@@ -43,16 +43,18 @@ Source: [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008
 - [Material for MkDocs - a material design theme for MkDocs](https://github.com/mkdocs/mkdocs/){:target="_blank"}
 - [MkDocs - project documentation with Markdown](https://github.com/mkdocs/mkdocs/){:target="_blank"}
 - [mkdocs-autoref - Automatically link across pages in MkDoc](https://github.com/mkdocstrings/autorefs/){:target="_blank"}
+- [mkdocs-awesome-pages-plugin - MkDocs Awesome Pages Plugin](https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin){:target="_blank"}
+- [mkdocs-material-extensions - MkDocs Material Extensions](https://github.com/facelessuser/mkdocs-material-extensions){:target="_blank"}
 - [mkdocstrings - automatic documentation from sources for MkDocs](https://github.com/mkdocstrings/mkdocstrings){:target="_blank"}
 - [mkdocstrings-python - a Python handler for mkdocstrings](https://github.com/mkdocstrings/python){:target="_blank"}
 
 ### e) Miscellaneous
 
+- [coveralls-python - Coveralls for Python](https://github.com/TheKevJames/coveralls-python){:target="_blank"}
 - [pipenv - Python development workflow for humans](https://github.com/pypa/pipenv){:target="_blank"}
-- [python-coveralls - Python API for http://coveralls.io](https://github.com/z4r/python-coveralls){:target="_blank"}
 
-## 4. Resources
+## 4. Demonstration Project
 
-### a) Books
+## 5. Resources
 
-- [Lott, Steven F., "Functional Python Programming", 2. Edition, Packt Publishing, 2018](https://www.packtpub.com/product/functional-python-programming-second-edition/9781788627061){:target="_blank"}
+- **Book**: [Lott, Steven F., "Functional Python Programming", 2. Edition, Packt Publishing, 2018](https://www.packtpub.com/product/functional-python-programming-second-edition/9781788627061){:target="_blank"}

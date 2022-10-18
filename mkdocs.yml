@@ -12,14 +12,16 @@ nav:
   - Home: 'index.md'
   - Standards:
       - General: best_practises_software_development.md
+      - Polynomial Multiplikation: polynomial_multiplication.md
       - Programming Languages:
           - C++: best_practises_cpp.md
-          - Python: best_practises_python.md    
+          - Python:
+            - Standards: best_practises_python.md
+            - Implementation Example: implementation_python.md
   - Release Documents:
       - Release Notes: 'release_notes.md'
 #     - Release History: 'release_history.md'
   - Code of Conduct: 'code_of_conduct.md'
-  - Contributing Guide: 'contributing.md'
   - License: 'LICENSE.md'
 
 plugins:

@@ -1,4 +1,4 @@
-# sds - Programming Language Independent Standards
+# SDS - Programming Language Independent Standards
 
 Here are all the cross-programming language standards and best practices to be followed in software development for the FAA-VAIL project.
 
@@ -27,10 +27,4 @@ Here are all the cross-programming language standards and best practices to be f
 - the project documentation is created with the tool [MkDocs](https://www.mkdocs.org){:target="_blank"}:  `make docs`
 
 ## 2. Git & GitHub
-
-## 3. Resources
-
-### a) Papers
-
-- [Lui Sha, "Using simplicity to control complexity," in IEEE Software, vol. 18, no. 4, pp. 20-28, July-Aug. 2001](https://ieeexplore.ieee.org/document/936213/citations?tabFilter=papers#citations){:target="_blank"}
 
