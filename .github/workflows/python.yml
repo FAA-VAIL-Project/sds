@@ -1,6 +1,8 @@
-name: Standards
+name: Python
 
 on:
+#  pull_request:
+#    branches: [ 'main' ]
   push:
     branches: [ '**' ]
 
@@ -8,7 +10,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  standards:
+  python:
     # --------------------------------------------------------------------------
     # Perform all development-specific tools, including formatting, static code
     # analysis, style enforcement and documentation creation. Changes in the code
@@ -29,12 +31,14 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Switch to the Python directory
-        run: cd lang/python
       - name: Install dev dependencies
-        run: make pipenv
+        run: |
+          cd lang/python
+          make pipenv
       - name: Run the whole software quality chain
-        run: make final
+        run: |
+          cd lang/python
+          make final
       - name: Publish the code coverage to coveralls.io
         run: |
             echo "::echo::on"
@@ -43,6 +47,7 @@ jobs:
             echo "Current version of pip3: $(pip --version || true)"
             echo "Current version of Ubuntu: $(lsb_release -a)"
             echo "================================================================================"
+            cd lang/python
             make coveralls
       - name: Commit documentation and sourcecode # transfer the new html files back into the repository
         run: |

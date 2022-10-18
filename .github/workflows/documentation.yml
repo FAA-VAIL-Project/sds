@@ -8,7 +8,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  standards:
+  documentation:
     # --------------------------------------------------------------------------
     # Perform documentation creation. Changes in the documentation are also
     # replicated in the repository.
