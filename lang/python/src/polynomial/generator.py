@@ -2,7 +2,7 @@
 # Use of this source code is governed by the GNU LESSER GENERAL
 # PUBLIC LICENSE, that can be found in the LICENSE.md file.
 
-"""Class for generating a JSON file with polynomials.."""
+"""Class for generating a JSON file with tasks."""
 from __future__ import annotations
 
 import json
@@ -18,18 +18,17 @@ from numpy.polynomial import Polynomial
 
 # pylint: disable=too-few-public-methods
 class Generator:
-    """Class for generating a JSON file with polynomials.
-
-    Using configuration parameters in the 'setup.cfg' file, a JSON file
-    containing polynomial pairs and their product can be generated with
-    an instance of this class.
-    """
+    """Class for generating a JSON file with tasks."""
 
     # ------------------------------------------------------------------
     # Initialise the instance.
     # ------------------------------------------------------------------
     def __init__(self, file_name) -> None:
-        """Perform the processing.
+        """Generate the tasks.
+
+        Using configuration parameters in the 'setup.cfg' file, a JSON file
+        containing polynomial pairs and their product as tasks can be
+        generated with an instance of this class.
 
         Args:
             file_name (str):
@@ -145,14 +144,22 @@ class Generator:
             )
 
     # ------------------------------------------------------------------
-    # Generation of a polynomial pair and calculation of its product.
+    # Generation a task consisting of a polynomial pair and
+    # their product.
     # ------------------------------------------------------------------
     @staticmethod
-    def _generate_polynom(no_task: int) -> Tuple[Polynomial, Polynomial, Polynomial]:
-        """Generation of a polynomial pair and calculation of its product.
+    def _generate_task(no_task: int) -> Tuple[Polynomial, Polynomial, Polynomial]:
+        """Generation a task consisting of a polynomial pair and their product.
 
         The degree of the polynomials and the coefficients are
         determined in a given range as random integers
+
+        Args:
+            no_task (int): The task number
+
+        Returns:
+            Tuple[Polynomial, Polynomial, Polynomial]:
+                Polynomial 1, Polynomial 2 and Polynomial 1 * Polynomial 2.
         """
         # Start time measurement.
         start_time = time.time_ns()

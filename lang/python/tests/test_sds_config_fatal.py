@@ -6,9 +6,9 @@
 
 import pytest
 
+from polynomial import polynomial_error
 from polynomial import sds_config
 from polynomial import sds_glob
-from polynomial import polynomial_error
 
 # -----------------------------------------------------------------------------
 # Constants & Globals.

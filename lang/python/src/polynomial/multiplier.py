@@ -18,25 +18,24 @@ from numpy import ndarray
 # pylint: disable=too-few-public-methods
 # pylint: disable=too-many-instance-attributes
 class Multiplier:
-    """Class for multiplying the polynomials and checking the result.
-
-    An instance of this class processes JSON files created by the
-    'Generator' class. Three different methods for calculating the
-    polynomial products are provided:
-
-        'fft'    - a Fast Fourier Transform oriented method.
-        'numpy'  - the polynomial multiplication of the polynomial
-                   module of NumPy
-        'simple' - a sequential multiplication of all terms of
-                   the two polynomials with each other and then
-                   a summation of the like terms
-    """
+    """Class for multiplying the polynomials and checking the resulting product."""
 
     # ------------------------------------------------------------------
     # Initialise the instance.
     # ------------------------------------------------------------------
     def __init__(self, file_name: str, method: str) -> None:
-        """Perform the processing.
+        """Perform the tasks from the JSON file.
+
+        An instance of this class processes a JSON file created by the
+        'Generator' class. Three different methods for calculating the
+        polynomial products are provided:
+
+            'fft'    - a Fast Fourier Transform oriented method.
+            'numpy'  - the polynomial multiplication of the polynomial
+                       module of NumPy
+            'simple' - a sequential multiplication of all terms of
+                       the two polynomials with each other and then
+                       a summation of the like terms
 
         Args:
             file_name (str):
@@ -138,15 +137,21 @@ class Multiplier:
         sds_glob.logger.debug(sds_glob.LOGGER_END)
 
     # ------------------------------------------------------------------
-    # Multiply the polynomials by applying Fast Fourier Transform.
+    # Multiply the polynomials by applying Fast Fourier transform.
     # ------------------------------------------------------------------
     def _multiply_fft(self):
+        """Multiply the polynomials by applying Fast Fourier transform."""
         pass
 
     # ------------------------------------------------------------------
     # Multiply the polynomials by applying the NumPy polynomial methods.
     # ------------------------------------------------------------------
     def _multiply_numpy(self) -> ndarray:
+        """Multiply the polynomials by applying the NumPy polynomial methods.
+
+        Returns:
+            ndarray: The product of the polynomials.
+        """
         return numpy.polynomial.Polynomial(
             self._poly_1_coeff
         ) * numpy.polynomial.Polynomial(self._poly_2_coeff)
@@ -157,6 +162,11 @@ class Multiplier:
     def _multiply_simple(
         self,
     ) -> ndarray:
+        """Multiply the polynomials by applying the simple method.
+
+        Returns:
+            ndarray: The product of the polynomials.
+        """
         result = numpy.zeros(
             len(self._poly_1_coeff) + len(self._poly_2_coeff), dtype=numpy.int64
         )
@@ -214,10 +224,10 @@ class Multiplier:
                 )
 
     # ------------------------------------------------------------------
-    # Print the statistics.
+    # Display the statistics.
     # ------------------------------------------------------------------
     def _show_statistics(self):
-        """Print the statistics."""
+        """Display the statistics."""
         for task_no, (
             duration,
             poly_1_degree,

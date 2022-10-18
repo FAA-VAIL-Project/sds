@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sds-python-standards-demonstration" class="md-skip">
+        <a href="#sds-python-implementation-example" class="md-skip">
           Skip to content
         </a>
       
@@ -234,6 +234,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api_documentation.html" class="md-nav__link">
+        API Documentation
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -267,10 +282,64 @@
                   
 
 
-<h1 id="sds-python-standards-demonstration">sds - Python Standards Demonstration</h1>
-<p><img alt="GitHub (Pre-)Release" src="https://img.shields.io/github/v/release/FAA-VAIL-Project/sds?include_prereleases" />
-<img alt="GitHub (Pre-)Release Date" src="https://img.shields.io/github/release-date-pre/FAA-VAIL-Project/sds" /></p>
-<p>Here are all the standards and best practices to be followed in software development for the FAA-VAIL project.</p>
+<h1 id="sds-python-implementation-example">sds - Python - Implementation Example</h1>
+<p>The Python implementation example is located in the file directory <strong><code>lang/python</code></strong>.</p>
+<p>Three different computational methods for polynomial multiplication are provided:</p>
+<ol>
+<li><strong>fft</strong>: Fast Fourier transform,</li>
+<li><strong>numpy</strong>:  <strong><code>numpy.polynomial</code></strong> package,</li>
+<li><strong>simple</strong>: simple multiplication of all monomials.</li>
+</ol>
+<p>For Python, the <strong><code>run_demo</code></strong> script supports the following processing variants:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Method</th>
+<th>Setup</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>complete</td>
+<td></td>
+<td>yes / no</td>
+<td>data &amp; fft &amp; numpy &amp; simple &amp; ...</td>
+</tr>
+<tr>
+<td>complete_python</td>
+<td></td>
+<td>yes / no</td>
+<td>data &amp; fft &amp; numpy &amp; simple</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>yes / no</td>
+<td></td>
+</tr>
+<tr>
+<td>python</td>
+<td>fft</td>
+<td>yes / no</td>
+<td></td>
+</tr>
+<tr>
+<td>python</td>
+<td>numpy</td>
+<td>yes / no</td>
+<td></td>
+</tr>
+<tr>
+<td>python</td>
+<td>simple</td>
+<td>yes / no</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The setup parameter controls the creation of a virtual environment.</p>
 
 
 
@@ -286,6 +355,27 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+      
+        
+        <a href="api_documentation.html" class="md-footer__link md-footer__link--next" aria-label="Next: API Documentation" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              API Documentation
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

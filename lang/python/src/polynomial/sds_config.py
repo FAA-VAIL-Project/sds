@@ -14,25 +14,7 @@ import utils
 
 # pylint: disable=too-few-public-methods
 class Config:
-    """Managing the application configuration parameters.
-
-    Configuration parameters are managed with class `Config`.
-
-    With the instantiation of the object first the agreed
-    default values are assigned to the configuration parameters.
-
-    Subsequently, a configuration file optionally specified with
-    the instantiation call is read. If no configuration file
-    was specified, then an optionally existing `setup.cfg` is
-    used as configuration file. The configuration file must be
-    in `Disutils` format in any case. Example:
-
-        [polynomial]
-        no_tasks = 10
-
-    In case of an error, the instantiation of the Config class is
-    terminated with a PolynomialError exception.
-    """
+    """Managing the application configuration parameters."""
 
     # ------------------------------------------------------------------
     # Global constants.
@@ -45,6 +27,23 @@ class Config:
     # ------------------------------------------------------------------
     def __init__(self, config_file=_CONFIG_FILE) -> None:
         """Initialise the instance.
+
+        Configuration parameters are managed with class `Config`.
+
+        With the instantiation of the object first the agreed
+        default values are assigned to the configuration parameters.
+
+        Subsequently, a configuration file optionally specified with
+        the instantiation call is read. If no configuration file
+        was specified, then an optionally existing `setup.cfg` is
+        used as configuration file. The configuration file must be
+        in `Disutils` format in any case. Example:
+
+            [polynomial]
+            no_tasks = 10
+
+        In case of an error, the instantiation of the Config class is
+        terminated with a PolynomialError exception.
 
         Args:
             config_file (str, optional):
@@ -75,54 +74,16 @@ class Config:
         if os.path.isfile(config_file):
             self.load_config_file(config_file)
 
-        self._check_config_params()
+        self._check_all_config_params()
 
         # INFO.00.002 The configuration parameters (polynomial) are checked and loaded
         utils.progress_msg_core(sds_glob.INFO_00_002)
 
     # ------------------------------------------------------------------
-    # Check the configuration parameters.
+    # Check all configuration parameters.
     # ------------------------------------------------------------------
-    def _check_config_param(self, key: str, value: bool | int | str) -> None:
-        """Check the configuration parameters.
-
-        Args:
-            key (str):
-                The name of the configuration parameter.
-            value (bool | int | str):
-                The given value of the configuration parameter.
-        """
-        key_int = key.lower()
-
-        if key_int in sds_glob.CONFIG_PARAM_COEF_MAX:
-            self._coef_max = self._check_config_value_int(value)
-            return
-        if key_int in sds_glob.CONFIG_PARAM_COEF_MIN:
-            self._coef_min = self._check_config_value_int(value)
-            return
-        if key_int in sds_glob.CONFIG_PARAM_DEGREE_MAX:
-            self._degree_max = self._check_config_value_int(value)
-            return
-        if key_int in sds_glob.CONFIG_PARAM_DEGREE_MIN:
-            self._degree_min = self._check_config_value_int(value)
-            return
-        if key_int in sds_glob.CONFIG_PARAM_NO_TASKS:
-            self._no_tasks = self._check_config_value_int(value)
-            return
-        if key_int in sds_glob.CONFIG_PARAM_VERBOSE:
-            self._is_verbose = self._check_config_value_bool(value)
-            return
-
-        # ERROR.00.903 Unknown configuration parameter: Key='{key}' Value='{value}
-        utils.terminate_fatal(
-            sds_glob.ERROR_00_903.replace("{key}", key).replace("{value}", str(value))
-        )
-
-    # ------------------------------------------------------------------
-    # Check the configuration parameters.
-    # ------------------------------------------------------------------
-    def _check_config_params(self) -> None:
-        """Check the configuration parameters."""
+    def _check_all_config_params(self) -> None:
+        """Check all configuration parameters."""
         # ERROR.00.907 The number of tasks must be at least 1 and not {no_tasks}
         if self._no_tasks < 1:
             utils.terminate_fatal(
@@ -215,45 +176,107 @@ class Config:
         return value
 
     # ------------------------------------------------------------------
-    # Getter method: coef_max.
+    # Check a single configuration parameter.
+    # ------------------------------------------------------------------
+    def _check_single_config_param(self, key: str, value: bool | int | str) -> None:
+        """Check a single configuration parameter.
+
+        Args:
+            key (str):
+                The name of the configuration parameter.
+            value (bool | int | str):
+                The given value of the configuration parameter.
+        """
+        key_int = key.lower()
+
+        if key_int in sds_glob.CONFIG_PARAM_COEF_MAX:
+            self._coef_max = self._check_config_value_int(value)
+            return
+        if key_int in sds_glob.CONFIG_PARAM_COEF_MIN:
+            self._coef_min = self._check_config_value_int(value)
+            return
+        if key_int in sds_glob.CONFIG_PARAM_DEGREE_MAX:
+            self._degree_max = self._check_config_value_int(value)
+            return
+        if key_int in sds_glob.CONFIG_PARAM_DEGREE_MIN:
+            self._degree_min = self._check_config_value_int(value)
+            return
+        if key_int in sds_glob.CONFIG_PARAM_NO_TASKS:
+            self._no_tasks = self._check_config_value_int(value)
+            return
+        if key_int in sds_glob.CONFIG_PARAM_VERBOSE:
+            self._is_verbose = self._check_config_value_bool(value)
+            return
+
+        # ERROR.00.903 Unknown configuration parameter: Key='{key}' Value='{value}
+        utils.terminate_fatal(
+            sds_glob.ERROR_00_903.replace("{key}", key).replace("{value}", str(value))
+        )
+
+    # ------------------------------------------------------------------
+    # Getter method: _coef_max.
     # ------------------------------------------------------------------
     def get_coef_max(self) -> int:
-        """Getter method: coef_max."""
+        """Getter method: _coef_max.
+
+        Returns:
+            int: The upper limit for the random generation of the coefficients.
+        """
         return self._coef_max
 
     # ------------------------------------------------------------------
-    # Getter method: coef_min.
+    # Getter method: _coef_min.
     # ------------------------------------------------------------------
     def get_coef_min(self) -> int:
-        """Getter method: coef_min."""
+        """Getter method: _coef_min.
+
+        Returns:
+            int: The lower limit for the random generation of the coefficients.
+        """
         return self._coef_min
 
     # ------------------------------------------------------------------
-    # Getter method: degree_max.
+    # Getter method: _degree_max.
     # ------------------------------------------------------------------
     def get_degree_max(self) -> int:
-        """Getter method: degree_max."""
+        """Getter method: _degree_min.
+
+        Returns:
+            int: The upper limit for the random generation of the degrees.
+        """
         return self._degree_max
 
     # ------------------------------------------------------------------
-    # Getter method: degree_min.
+    # Getter method: _degree_min.
     # ------------------------------------------------------------------
     def get_degree_min(self) -> int:
-        """Getter method: degree_min."""
+        """Getter method: _degree_min.
+
+        Returns:
+            int: The lower limit for the random generation of the degrees.
+        """
         return self._degree_min
 
     # ------------------------------------------------------------------
-    # Getter method: is_verbose.
+    # Getter method: _is_verbose.
     # ------------------------------------------------------------------
     def get_is_verbose(self) -> bool:
-        """Getter method: is_verbose."""
+        """Getter method: _is_verbose.
+
+        Returns:
+            bool: Showing progress messages.
+        """
         return self._is_verbose
 
     # ------------------------------------------------------------------
-    # Getter method: no_tasks.
+    # Getter method: _no_tasks.
     # ------------------------------------------------------------------
     def get_no_tasks(self) -> int:
-        """Getter method: no_tasks."""
+        """Getter method: _no_tasks.
+
+        Returns:
+            int: The number of tasks to be generated.
+        """
         return self._no_tasks
 
     # ------------------------------------------------------------------
@@ -280,14 +303,21 @@ class Config:
                     self._check_config_param(key, value)
 
     # ------------------------------------------------------------------
-    # Setter method: coef.
+    # Setter method: _coef_min & _coef_max.
     # ------------------------------------------------------------------
     def set_coef(self, coef_min: int, coef_max: int) -> None:
-        """Getter method: coef_max."""
+        """Setter method: _coef_min & _coef_max.
+
+        Args:
+            coef_min (int):
+                The lower limit for the random generation of the coefficients.
+            coef_max (int):
+                The upper limit for the random generation of the coefficients.
+        """
         self._coef_min = coef_min
         self._coef_max = coef_max
 
-        self._check_config_params()
+        self._check_all_config_params()
 
     # ------------------------------------------------------------------
     # Modify the value of an existing configuration parameter.
@@ -304,29 +334,44 @@ class Config:
         self._check_config_param(key, value)
 
     # ------------------------------------------------------------------
-    # Setter method: degree.
+    # Setter method: _degree_min & _degree_max.
     # ------------------------------------------------------------------
     def set_degree(self, degree_min: int, degree_max: int) -> None:
-        """Getter method: degree_max."""
+        """Setter method: _degree_min & _degree_max.
+
+        Args:
+            degree_min (int):
+                The lower limit for the random generation of the degrees.
+            degree_max (int):
+                The upper limit for the random generation of the degrees.
+        """
         self._degree_min = degree_min
         self._degree_max = degree_max
 
-        self._check_config_params()
+        self._check_all_config_params()
 
     # ------------------------------------------------------------------
-    # Setter method: is_verbose.
+    # Setter method: _is_verbose.
     # ------------------------------------------------------------------
     def set_is_verbose(self, is_verbose: bool) -> None:
-        """Getter method: is_verbose_max."""
+        """Setter method: _is_verbose.
+
+        Args:
+            is_verbose (bool): Showing progress messages.
+        """
         self._is_verbose = is_verbose
 
-        self._check_config_params()
+        self._check_all_config_params()
 
     # ------------------------------------------------------------------
-    # Setter method: no_tasks.
+    # Setter method: _no_tasks.
     # ------------------------------------------------------------------
     def set_no_tasks(self, no_tasks: int) -> None:
-        """Getter method: no_tasks_max."""
+        """Setter method: _no_tasks.
+
+        Args:
+            no_tasks (int): The number of tasks to be generated
+        """
         self._no_tasks = no_tasks
 
-        self._check_config_params()
+        self._check_all_config_params()

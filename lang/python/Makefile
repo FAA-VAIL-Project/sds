@@ -31,7 +31,8 @@ dev: format lint tests
 ## docs:               Check the API documentation, create and upload the user documentation.
 docs: pydocstyle mkdocs
 ## final:              Format, lint and test the code and create the documentation.
-final: format lint docs tests
+# final: format lint docs tests
+final: format lint docs
 ## format:             Format the code with isort, Black and docformatter.
 format: isort black docformatter
 ## lint:               Lint the code with Bandit, Flake8, Pylint and Mypy.

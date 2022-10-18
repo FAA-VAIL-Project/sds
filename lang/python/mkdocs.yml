@@ -22,6 +22,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - API Documentation: api_documentation.md
 
 plugins:
   - autorefs

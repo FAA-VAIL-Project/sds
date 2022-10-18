@@ -4,7 +4,7 @@
 
 """Module polynomial: Entry Point Functionality.
 
-This is the entry point to the application POLYNOMIAL.
+This is the entry point to the application **polynomial**.
 """
 from __future__ import annotations
 
