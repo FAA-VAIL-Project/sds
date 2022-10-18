@@ -1,4 +1,4 @@
-# sds - File Directory **`lang/python`**
+# SDS - File Directory **`lang/python`**
 
 This file directory contains all necessary files for the demo project **POLYNOMIAL** in the Python programming language.
 

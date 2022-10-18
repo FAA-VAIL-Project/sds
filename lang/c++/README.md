@@ -1,4 +1,4 @@
-# sds - File Directory **`lang/c++`**
+# SDS - File Directory **`lang/c++`**
 
 This file directory contains all necessary files for the demo project **POLYNOMIAL** in the C++ programming language.
 

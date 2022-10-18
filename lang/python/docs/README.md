@@ -1,4 +1,4 @@
-# sds - File Directory **`lang/python/docs`**
+# SDS - File Directory **`lang/python/docs`**
 
 This directory contains all the necessary files to create the documentation for **POLYNOMIAL**. 
 These consist of 

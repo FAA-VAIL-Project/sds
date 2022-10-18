@@ -1,4 +1,4 @@
-# sds - File Directory **`.github/workflows`**
+# SDS - File Directory **`.github/workflows`**
 
 This directory contains the following GitHub Action workflow:
 

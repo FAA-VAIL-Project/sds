@@ -12,7 +12,7 @@ endif
 
 ##                                                                            .
 ## ============================================================================
-## sds - Software Development Standards.
+## SDS - Software Development Standards.
 ##       ---------------------------------------------------------------
 ##       The purpose of this Makefile is to support the software
 ##       development process for sds.

@@ -1,4 +1,4 @@
-# sds - File Directory **`lang/rust`**
+# SDS - File Directory **`lang/rust`**
 
 This file directory contains all necessary files for the demo project **POLYNOMIAL** in the Rust programming language.
 

@@ -1,4 +1,4 @@
-# sds - API Documentation Module `polynomial` 
+# SDS - API Documentation Module `polynomial` 
 
 ## Class `Config` 
 

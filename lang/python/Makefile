@@ -16,7 +16,7 @@ endif
 
 ##                                                                            .
 ## =============================================================================
-## sds - Python Demo - make Documentation.
+## SDS - Python Demo - make Documentation.
 ##       -------------------------------------------------------------
 ##       The purpose of this Makefile is to support the whole software
 ##       development process for the Python demo. It contains also the
