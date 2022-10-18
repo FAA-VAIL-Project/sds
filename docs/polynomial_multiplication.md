@@ -1,4 +1,4 @@
-# sds - Polynomial Multiplication
+# SDS - Polynomial Multiplication
 
 For each of the programming languages used in the FAA-VAIL project, the required standards are demonstrated in an implementation example based on the following specification.   
 The implemented examples can be found in the file directory **`lang`**.

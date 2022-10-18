@@ -1,4 +1,4 @@
-# sds - C++ Standards
+# SDS - C++ Standards
 
 Here you will find all the standards and best practices to be followed when developing software with the C++ programming language for the FAA-VAIL project.
 

@@ -1,8 +1,6 @@
-# sds - API Documentation
+# sds - API Documentation Module `polynomial` 
 
-## Documentation for the module `polynomial`
-
-### Class `Config` 
+## Class `Config` 
 
 ::: src.polynomial.sds_config
     handler: python
@@ -22,7 +20,7 @@
         - set_is_verbose
         - set_no_tasks
 
-### Class `Generator` 
+## Class `Generator` 
 
 ::: src.polynomial.generator
     handler: python
@@ -30,7 +28,7 @@
       members:
         - Generator
 
-### Class `Multiplier` 
+## Class `Multiplier` 
 
 ::: src.polynomial.multiplier
     handler: python
@@ -38,7 +36,7 @@
       members:
         - Multiplier
 
-### Class `PolynomialError` 
+## Class `PolynomialError` 
 
 ::: src.polynomial.polynomial_error
     handler: python
@@ -46,7 +44,7 @@
       members:
         - PolynomialError
 
-### Module `launcher` 
+## Module `launcher` 
 
 ::: src.polynomial.launcher
     handler: python
@@ -54,7 +52,7 @@
       members:
         - main
 
-### Module `utils` 
+## Module `utils` 
 
 ::: src.polynomial.utils
     handler: python

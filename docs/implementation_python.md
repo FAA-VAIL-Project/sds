@@ -1,4 +1,4 @@
-# sds - Python - Implementation Example
+# SDS - Python - Implementation Example
 
 The Python implementation example is located in the file directory **`lang/python`**.
 
