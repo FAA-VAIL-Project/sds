@@ -1,5 +1,15 @@
 .DEFAULT_GOAL := help
 
+ifeq ($(OS),Windows_NT)
+	export DEMONSTRATION_PYTHON=copy /Y lang\\python\\docs\\index.md docs\\implementation_python.md
+	export PIPENV=python -m pipenv
+	export PYTHON=python
+else
+	export DEMONSTRATION_PYTHON=cp -i lang/python/docs/index.md docs/implementation_python.md
+	export PIPENV=python3 -m pipenv
+	export PYTHON=python3
+endif
+
 ##                                                                            .
 ## ============================================================================
 ## sds - Software Development Standards.
@@ -22,15 +32,17 @@ help:
 # Configuration file: none
 mkdocs:
 	@echo "Info **********  Start: MkDocs **************************************"
-	python -m pip install --upgrade pip
-	python -m pip install --upgrade pipenv
-	python -m pipenv install --dev
-	python -m pipenv update --dev
-	pipenv run pip freeze
-	python --version
-	python -m pip --version
-	pipenv run mkdocs --version
-	pipenv run mkdocs gh-deploy --force
+	${PYTHON} -m pip install --upgrade pip
+	${PYTHON} -m pip install --upgrade pipenv
+	${PYTHON} -m pipenv install --dev
+	${PYTHON} -m pipenv update --dev
+	${PIPENV} run pip freeze
+	@echo ---------------------------------------------------------------------
+	@echo PYTHON    =${PYTHON}
+	${PIPENV} run mkdocs --version
+	@echo ---------------------------------------------------------------------
+	${DEMONSTRATION_PYTHON}
+	${PIPENV} run mkdocs gh-deploy --force
 	@echo "Info **********  End:   MkDocs **************************************"
 
 ## ============================================================================

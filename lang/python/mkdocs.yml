@@ -22,23 +22,6 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Library:
-      - Requirements: library_requirements.md
-      - Installaion: library_installation.md
-      - Configuration: library_configuration.md
-      - API Documentation: library_api_documentation.md
-  - Development:
-      - API Design: development_api_design.md
-      - Environment: development_environment.md
-      - Coding Standards: development_coding_standards.md
-      - Code Formatting: development_code_formatting.md
-      - Static Code Analysis: development_static_code_analysis.md
-      - Documentation:
-          - Software Documentation: development_software_documentation.md
-          - API Documentation: development_api_documentation.md
-      - Software Testing: development_software_testing.md
-      - Continuous Delivery: development_continuous_delivery.md
-      - Version Planning: development_version_planning.md
 
 plugins:
   - autorefs

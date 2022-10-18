@@ -226,6 +226,6 @@ class Multiplier:
         ) in enumerate(self._statistics):
             utils.progress_msg_time_elapsed(
                 duration,
-                f"polynomial no. {task_no + 1:2d} (degrees: {poly_1_degree:5d} - "
-                + f"{poly_2_degree:5d} - {prod_degree:5d}) generated",
+                f"task no. {task_no + 1:2d} (degrees: {poly_1_degree:5d} - "
+                + f"{poly_2_degree:5d} - {prod_degree:5d}) executed",
             )
