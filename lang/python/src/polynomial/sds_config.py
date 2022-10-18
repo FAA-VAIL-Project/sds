@@ -300,7 +300,7 @@ class Config:
         for section in config_parser.sections():
             if section in (Config._CONFIG_SECTION,):
                 for (key, value) in config_parser.items(section):
-                    self._check_config_param(key, value)
+                    self._check_single_config_param(key, value)
 
     # ------------------------------------------------------------------
     # Setter method: _coef_min & _coef_max.
@@ -331,7 +331,7 @@ class Config:
             value (bool | int | str):
                 The new value of the configuration parameter.
         """
-        self._check_config_param(key, value)
+        self._check_single_config_param(key, value)
 
     # ------------------------------------------------------------------
     # Setter method: _degree_min & _degree_max.

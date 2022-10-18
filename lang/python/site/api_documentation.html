@@ -694,7 +694,7 @@
                   
 
 
-<h1 id="sds-api-documentation-module-polynomial">sds - API Documentation Module <code>polynomial</code></h1>
+<h1 id="sds-api-documentation-module-polynomial">SDS - API Documentation Module <code>polynomial</code></h1>
 <h2 id="class-config">Class <code>Config</code></h2>
 
 
@@ -1384,7 +1384,7 @@
         <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">config_parser</span><span class="o">.</span><span class="n">sections</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">section</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">_CONFIG_SECTION</span><span class="p">,):</span>
                 <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">config_parser</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">section</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_check_config_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_check_single_config_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
     <span class="c1"># ------------------------------------------------------------------</span>
     <span class="c1"># Setter method: _coef_min &amp; _coef_max.</span>
@@ -1415,7 +1415,7 @@
 <span class="sd">            value (bool | int | str):</span>
 <span class="sd">                The new value of the configuration parameter.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_config_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_single_config_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
     <span class="c1"># ------------------------------------------------------------------</span>
     <span class="c1"># Setter method: _degree_min &amp; _degree_max.</span>
@@ -2031,7 +2031,7 @@ file.</p>
     <span class="k">for</span> <span class="n">section</span> <span class="ow">in</span> <span class="n">config_parser</span><span class="o">.</span><span class="n">sections</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">section</span> <span class="ow">in</span> <span class="p">(</span><span class="n">Config</span><span class="o">.</span><span class="n">_CONFIG_SECTION</span><span class="p">,):</span>
             <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">config_parser</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">section</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_check_config_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_check_single_config_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -2187,7 +2187,7 @@ file.</p>
 <span class="sd">        value (bool | int | str):</span>
 <span class="sd">            The new value of the configuration parameter.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_check_config_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_check_single_config_param</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
       </details>
   </div>
@@ -2672,7 +2672,7 @@ file.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">no_task</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sds_glob</span><span class="o">.</span><span class="n">inst_config</span><span class="o">.</span><span class="n">get_no_tasks</span><span class="p">()):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generate_polynom</span><span class="p">(</span><span class="n">no_task</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generate_task</span><span class="p">(</span><span class="n">no_task</span><span class="p">))</span>
 
         <span class="c1"># Write the generated polynomials along with their product</span>
         <span class="c1"># to a JSON file for use in the &#39;Multiplier&#39; class.</span>
@@ -2946,7 +2946,7 @@ generated with an instance of this class.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">no_task</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sds_glob</span><span class="o">.</span><span class="n">inst_config</span><span class="o">.</span><span class="n">get_no_tasks</span><span class="p">()):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generate_polynom</span><span class="p">(</span><span class="n">no_task</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generate_task</span><span class="p">(</span><span class="n">no_task</span><span class="p">))</span>
 
     <span class="c1"># Write the generated polynomials along with their product</span>
     <span class="c1"># to a JSON file for use in the &#39;Multiplier&#39; class.</span>
@@ -3016,7 +3016,8 @@ generated with an instance of this class.</p>
   <div class="doc doc-contents ">
 
   
-      <p>Class for multiplying the polynomials and checking the resulting product.</p>
+      <p>Class for multiplying the polynomials and checking the resulting
+product.</p>
 
 
         <details class="quote">
@@ -3243,7 +3244,8 @@ generated with an instance of this class.</p>
 <span class="normal">239</span>
 <span class="normal">240</span>
 <span class="normal">241</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Multiplier</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Class for multiplying the polynomials and checking the resulting product.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Class for multiplying the polynomials and checking the resulting</span>
+<span class="sd">    product.&quot;&quot;&quot;</span>
 
     <span class="c1"># ------------------------------------------------------------------</span>
     <span class="c1"># Initialise the instance.</span>
@@ -3366,7 +3368,6 @@ generated with an instance of this class.</p>
     <span class="c1"># ------------------------------------------------------------------</span>
     <span class="k">def</span> <span class="nf">_multiply_fft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Multiply the polynomials by applying Fast Fourier transform.&quot;&quot;&quot;</span>
-        <span class="k">pass</span>
 
     <span class="c1"># ------------------------------------------------------------------</span>
     <span class="c1"># Multiply the polynomials by applying the NumPy polynomial methods.</span>
@@ -3540,8 +3541,7 @@ generated with an instance of this class.</p>
 
       <details class="quote">
         <summary>Source code in <code>src\polynomial\multiplier.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 26</span>
-<span class="normal"> 27</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 27</span>
 <span class="normal"> 28</span>
 <span class="normal"> 29</span>
 <span class="normal"> 30</span>
@@ -3651,7 +3651,8 @@ generated with an instance of this class.</p>
 <span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
-<span class="normal">137</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">137</span>
+<span class="normal">138</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Perform the tasks from the JSON file.</span>
 
 <span class="sd">    An instance of this class processes a JSON file created by the</span>

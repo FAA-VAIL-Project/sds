@@ -11,4 +11,3 @@ class PolynomialError(RuntimeError):
     def __init__(self, error_msg):
         """Constructor."""
         super().__init__(error_msg)
-        

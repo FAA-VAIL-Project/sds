@@ -18,7 +18,8 @@ from numpy import ndarray
 # pylint: disable=too-few-public-methods
 # pylint: disable=too-many-instance-attributes
 class Multiplier:
-    """Class for multiplying the polynomials and checking the resulting product."""
+    """Class for multiplying the polynomials and checking the resulting
+    product."""
 
     # ------------------------------------------------------------------
     # Initialise the instance.
@@ -141,7 +142,6 @@ class Multiplier:
     # ------------------------------------------------------------------
     def _multiply_fft(self):
         """Multiply the polynomials by applying Fast Fourier transform."""
-        pass
 
     # ------------------------------------------------------------------
     # Multiply the polynomials by applying the NumPy polynomial methods.

@@ -51,7 +51,7 @@ class Generator:
         self._tasks = []
 
         for no_task in range(sds_glob.inst_config.get_no_tasks()):
-            self._tasks.append(self._generate_polynom(no_task))
+            self._tasks.append(self._generate_task(no_task))
 
         # Write the generated polynomials along with their product
         # to a JSON file for use in the 'Multiplier' class.
