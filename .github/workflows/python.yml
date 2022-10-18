@@ -1,10 +1,8 @@
 name: Python
 
 on:
-#  pull_request:
-#    branches: [ 'main' ]
-  push:
-    branches: [ '**' ]
+  pull_request:
+    branches: [ 'main' ]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
