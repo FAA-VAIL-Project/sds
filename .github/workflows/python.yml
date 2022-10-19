@@ -50,6 +50,7 @@ jobs:
 #            make coveralls
       - name: Commit documentation and sourcecode # transfer the new html files back into the repository
         run: |
+          cd lang/python
           git config --local user.name  ${{ github.actor }}
           git add .
           git commit -a -m "Updating the repository GitHub html pages in the docs folder"
