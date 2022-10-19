@@ -19,10 +19,25 @@ from polynomial import sds_glob
 # -----------------------------------------------------------------------------
 # Test case: Multiplier() - Create an instance - Method 'fft'.
 # -----------------------------------------------------------------------------
-def test_cover_multiplier_fft():
+def test_cover_multiplier_fft_01():
     """Test case: Multiplier() - Create an instance - Method 'fft'."""
     # -------------------------------------------------------------------------
     pytest.helpers.copy_file_4_pytest("polynom_data_01.json")
+
+    # -------------------------------------------------------------------------
+    multiplier.Multiplier(
+        file_name=os.environ[sds_glob.POLYNOMIAL_FILE_NAME],
+        method=sds_glob.ARG_METHOD_FFT,
+    )
+
+
+# -----------------------------------------------------------------------------
+# Test case: Multiplier() - Create an instance - Method 'fft'.
+# -----------------------------------------------------------------------------
+def test_cover_multiplier_fft_02():
+    """Test case: Multiplier() - Create an instance - Method 'fft'."""
+    # -------------------------------------------------------------------------
+    pytest.helpers.copy_file_4_pytest("polynom_data_02.json")
 
     # -------------------------------------------------------------------------
     multiplier.Multiplier(

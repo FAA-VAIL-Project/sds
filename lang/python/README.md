@@ -22,4 +22,4 @@ This file directory contains all necessary files for the demo project **POLYNOMI
 | Pipfile.lock      | Definition of the specific versions of the Python packages.                                     |
 | pyproject.toml    | Optional configuration data for the **bandit**, **isort**, **pydocstyle** and **pytest** tools. |
 | README.md         | This file.                                                                                      |
-| setup.cfg         | Optional configuration data for **flake8** and **polynomials**.                                 |
+| setup.cfg         | Optional configuration data for **flake8** and **POLYNOMIAL**.                                 |

@@ -4,20 +4,20 @@
 ![GitHub (Pre-)Release Date](https://img.shields.io/github/release-date-pre/FAA-VAIL-Project/sds)
 ![GitHub commits since latest release](https://img.shields.io/github/commits-since/FAA-VAIL-Project/sds/0.9.0)
 
-## 1. Version 0.9.0
+## 1. Version 0.9.1
 
 Release Date: dd.mm.2022
 
 ### 1.1 New Features
 
-- Initial version.
+- Python demo.
 
 ### 1.2 Applied Software
 
-| Software | Version | Remark       | Status |
-|:---------|:--------|:-------------|--------|
-| Git      | 2.34.1  | base version |        |
-| Python3  | 3.10.8  |              |        |
+| Software | Version | Remark       | Status  |
+|:---------|:--------|:-------------|---------|
+| Git      | 2.34.1  | base version |         |
+| Python3  | 3.10.8  |              | upgrade |
 
 #### Windows-specific Software
 

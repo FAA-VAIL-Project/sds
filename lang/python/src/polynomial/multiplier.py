@@ -5,6 +5,7 @@
 """Class for multiplying the polynomials and checking the result."""
 from __future__ import annotations
 
+import cmath
 import json
 import os
 import time
@@ -70,6 +71,7 @@ class Multiplier:
         self._poly_1_degree = 0
         self._poly_2_coeff: list[int] = []
         self._poly_2_degree = 0
+        self._poly_no_coeff = 0
         self._prod_coeff: list[int] = []
         self._prod_degree = 0
         self._statistics: list[tuple[int, int, int, int]] = []
@@ -138,10 +140,139 @@ class Multiplier:
         sds_glob.logger.debug(sds_glob.LOGGER_END)
 
     # ------------------------------------------------------------------
-    # Multiply the polynomials by applying Fast Fourier transform.
+    # Eliminate the leading zero terms and determine the final degree
+    # of the polynomial product.
     # ------------------------------------------------------------------
-    def _multiply_fft(self):
-        """Multiply the polynomials by applying Fast Fourier transform."""
+    @staticmethod
+    def _delete_leading_zero_terms(result) -> ndarray:
+        """Eliminate the leading zero terms and determine the final degree."""
+        zeros = []
+
+        for degree in range(len(result) - 1, -1, -1):
+            if result[degree] == 0:
+                zeros.append(degree)
+            else:
+                break
+
+        if zeros:
+            result = numpy.delete(result, zeros)
+
+        return result
+
+    # ------------------------------------------------------------------
+    # Computing the complex conjugates.
+    # ------------------------------------------------------------------
+    def _fft_complex_conjugate(self, polynomial) -> list[complex]:
+        """Computing the complex conjugates.
+
+        The complex conjugate of a complex number is obtained by changing
+        the sign of its imaginary part.
+
+        Args:
+            polynomial (list[int]): The coefficients of the polynomial.
+
+        Returns:
+            list[complex]: The complex conjugates.
+        """
+        result = self._fft_recursive([coeff.conjugate() for coeff in polynomial])
+
+        return [coeff.conjugate() / len(polynomial) for coeff in result]
+
+    # ------------------------------------------------------------------
+    # Polynomial multiplication.
+    # ------------------------------------------------------------------
+    def _fft_multiply_polynomials(self, polynomial_a, polynomial_b):
+        """Polynomial multiplication.
+
+        Args:
+            polynomial_a (list[int]):
+                The coefficients of the first polynomial.
+            polynomial_b (list[int]):
+                The coefficients of the second polynomial.
+
+        Returns:
+            list[int]: Resulting product of the two polynomials.
+        """
+        size_total = len(polynomial_a) + len(polynomial_b)
+
+        degree = 1
+
+        while degree < size_total:
+            degree = degree * 2
+
+        for _ in range(degree - len(polynomial_a)):
+            polynomial_a.append(0)
+        for _ in range(degree - len(polynomial_b)):
+            polynomial_b.append(0)
+
+        polynomial_a_fft = self._fft_recursive(polynomial_a)
+        polynomial_b_fft = self._fft_recursive(polynomial_b)
+
+        polynomial_c = []
+
+        for i in range(degree):
+            polynomial_c.append(polynomial_a_fft[i] * polynomial_b_fft[i])
+
+        polynomial_d = self._fft_complex_conjugate(polynomial_c)
+
+        result = []
+
+        for _, value in enumerate(polynomial_d):
+            result.append(round(value.real))
+
+        return result
+
+    # ------------------------------------------------------------------
+    # Recursive FFT.
+    # ------------------------------------------------------------------
+    def _fft_recursive(self, polynomial: list[int]):
+        """Recursive FFT.
+
+        Args:
+            polynomial (list[int]): The coefficients of a polynomial.
+
+        Returns:
+            list[int]: The coefficients of a new polynomial.
+        """
+        polynomial_size = len(polynomial)  # n is a power of 2
+
+        if polynomial_size == 1:
+            return polynomial
+
+        omega = cmath.exp((2.0 * cmath.pi * 1j) / polynomial_size)
+
+        polynomial_even = polynomial[0::2]
+        polynomial_odd = polynomial[1::2]
+
+        polynomial_next_even = self._fft_recursive(polynomial_even)
+        polynomial_next_odd = self._fft_recursive(polynomial_odd)
+
+        polynomial_next = [0] * polynomial_size
+
+        for degree in range(polynomial_size // 2):
+            polynomial_next[degree] = (
+                polynomial_next_even[degree]
+                + omega**degree * polynomial_next_odd[degree]
+            )
+            polynomial_next[degree + polynomial_size // 2] = (
+                polynomial_next_even[degree]
+                - omega**degree * polynomial_next_odd[degree]
+            )
+
+        return polynomial_next
+
+    # ------------------------------------------------------------------
+    # Multiply the polynomials by applying the Fast Fourier transform.
+    # ------------------------------------------------------------------
+    def _multiply_fft(self) -> ndarray:
+        """Multiply the polynomials by applying Fast Fourier transform.
+
+        Returns:
+            ndarray: The product of the polynomials.
+        """
+        return self._delete_leading_zero_terms(
+            self._fft_multiply_polynomials(self._poly_1_coeff, self._poly_2_coeff)
+        )
 
     # ------------------------------------------------------------------
     # Multiply the polynomials by applying the NumPy polynomial methods.
@@ -178,20 +309,7 @@ class Multiplier:
                     if coeff_2 != 0:
                         result[degree_1 + degree_2] += coeff_1 * coeff_2
 
-        # Eliminate the leading zero terms and determine
-        # the final degree of the polynomial product.
-        zeros = []
-
-        for degree in range(len(result) - 1, -1, -1):
-            if result[degree] == 0:
-                zeros.append(degree)
-            else:
-                break
-
-        if zeros:
-            result = numpy.delete(result, zeros)
-
-        return result
+        return self._delete_leading_zero_terms(result)
 
     # ------------------------------------------------------------------
     # Perform the processing of a polynomial multiplication task.

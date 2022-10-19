@@ -101,7 +101,6 @@ def _get_args() -> dict[str, str]:
 
     args[_ARG_ACTION] = parsed_args.action.lower()
 
-    print(f"wwe args[_ARG_ACTION]={args[_ARG_ACTION]}")
     if not (
         args[_ARG_ACTION]
         in [sds_glob.ARG_ACTION_GENERATE, sds_glob.ARG_ACTION_MULTIPLY]
@@ -116,7 +115,6 @@ def _get_args() -> dict[str, str]:
 
     args[_ARG_METHOD] = parsed_args.method.lower()
 
-    print(f"wwe args[_ARG_METHOD]={args[_ARG_METHOD]}")
     if not (
         args[_ARG_METHOD]
         in [
