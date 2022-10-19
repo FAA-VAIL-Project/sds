@@ -5,14 +5,165 @@
 """Class for multiplying the polynomials and checking the result."""
 from __future__ import annotations
 
+import cmath
 import json
 import os
 import time
+from cmath import exp
+from math import pi
 
 import numpy
 import sds_glob  # type: ignore
 import utils  # type: ignore
 from numpy import ndarray
+
+
+# ------------------------------------------------------------------
+# A simple class to simulate n-th root of unity. It is implemented
+# merely for FFT and FPM algorithm.
+# ------------------------------------------------------------------
+class NthRootOfUnity:
+    def __init__(self, n, k=1):
+        self.k = k
+        self.n = n
+
+    def __pow__(self, other):
+        if type(other) is int:
+            n = NthRootOfUnity(self.n, self.k * other)
+            return n
+
+    def __eq__(self, other):
+        if other == 1:
+            return abs(self.n) == abs(self.k)
+
+    def __mul__(self, other):
+        return exp(2 * 1j * pi * self.k / self.n) * other
+
+    def __repr__(self):
+        return str(self.n) + "-th root of unity to the " + str(self.k)
+
+    @property
+    def th(self):
+        return abs(self.n // self.k)
+
+
+# ------------------------------------------------------------------
+# The Fast Fourier Transform Algorithm
+# Input: A, An array of integers of size n representing a polynomial
+#        omega, a root of unity
+# Output: [A(omega), A(omega^2), ..., A(omega^(n-1))]
+# Complexity: O(n log n)
+# ------------------------------------------------------------------
+def FFT(A, omega):
+    if omega == 1:
+        return [sum(A)]
+    B = [[], []]
+    i = 0
+    for a in A:
+        B[i % 2].append(a)
+        i += 1
+    o2 = omega**2
+    C1 = FFT(B[0], o2)
+    C2 = FFT(B[1], o2)
+    C3 = [None] * omega.th
+    for i in range(omega.th // 2):
+        C3[i] = C1[i] + omega**i * C2[i]
+        C3[i + omega.th // 2] = C1[i] - omega**i * C2[i]
+    return C3
+
+
+# ------------------------------------------------------------------
+# The Fast Polynomial Multiplication Algorithm
+# Input: A,B, two arrays of integers representing polynomials
+# Output: Coefficient representation of AB
+# Complexity: O(n log n)
+# ------------------------------------------------------------------
+def FPM(A, B):
+    n = 1 << (len(A) + len(B) - 2).bit_length()
+    o = NthRootOfUnity(n)
+    AT = FFT(
+        A, o
+    )
+    # FFT input: coefficient representation of polynomial,
+    # output: value representation of polynomial
+    BT = FFT(B, o)
+    C = [AT[i] * BT[i] for i in range(n)]
+    # nm = (len(A) + len(B) - 1)
+    D = [int((a / n).real) for a in FFT(C, o**-1)]
+    while True:
+        if D[-1] != 0:
+            return D
+        else:
+            del D[-1]
+
+
+# ------------------------------------------------------------------
+# https://www.youtube.com/watch?v=Ty0JcR6Dvis    FFT example, unraveling the recursion
+# ------------------------------------------------------------------
+def fft2(P):
+    # P: [p0, p1, ...pn-1]  coefficient representation of a polynomial
+    n = len(P)  # n is a power of 2
+    if n == 1:
+        return P
+    w = cmath.exp((2.0 * cmath.pi * 1j) / n)  # this is omega
+    P_even = P[0::2]
+    P_odd = P[1::2]
+    y_even = fft2(P_even)
+    y_odd = fft2(P_odd)
+    y = [0] * n
+    for j in range(n // 2):
+        y[j] = y_even[j] + w**j * y_odd[j]
+        y[j + n // 2] = y_even[j] - w**j * y_odd[j]
+    return y
+
+
+# ------------------------------------------------------------------
+# The complex conjugate of a complex number is obtained by changing
+# the sign of its imaginary part.
+# ------------------------------------------------------------------
+def ifft(X):
+    result = fft2([x.conjugate() for x in X])
+    return [x.conjugate() / len(X) for x in result]
+
+
+def multiply_polynomials(p, q):
+    x = len(p) + len(q)
+    n = 1
+
+    while n < x:
+        n = n * 2
+
+    for i in range(n - len(p)):
+        p.append(0)
+    for i in range(n - len(q)):
+        q.append(0)
+
+    pfft = fft2(p)
+    qfft = fft2(q)
+
+    c = []
+    for i in range(n):
+        c.append(pfft[i] * qfft[i])
+
+    d = ifft(c)
+    result = []
+    for i in range(len(d)):
+        result.append(round(d[i].real))
+
+    # Eliminate the leading zero terms and determine
+    # the final degree of the polynomial product.
+    zeros = []
+
+    for degree in range(len(result) - 1, -1, -1):
+        if result[degree] == 0:
+            zeros.append(degree)
+        else:
+            break
+
+    if zeros:
+        result = numpy.delete(result, zeros)
+
+    return result
 
 
 # pylint: disable=too-few-public-methods
@@ -70,6 +221,7 @@ class Multiplier:
         self._poly_1_degree = 0
         self._poly_2_coeff: list[int] = []
         self._poly_2_degree = 0
+        self._poly_no_coeff = 0
         self._prod_coeff: list[int] = []
         self._prod_degree = 0
         self._statistics: list[tuple[int, int, int, int]] = []
@@ -138,10 +290,15 @@ class Multiplier:
         sds_glob.logger.debug(sds_glob.LOGGER_END)
 
     # ------------------------------------------------------------------
-    # Multiply the polynomials by applying Fast Fourier transform.
+    # Multiply the polynomials by applying the Fast Fourier transform.
     # ------------------------------------------------------------------
-    def _multiply_fft(self):
-        """Multiply the polynomials by applying Fast Fourier transform."""
+    def _multiply_fft(self) -> ndarray:
+        """Multiply the polynomials by applying Fast Fourier transform.
+
+        Returns:
+            ndarray: The product of the polynomials.
+        """
+        return multiply_polynomials(self._poly_1_coeff, self._poly_2_coeff)
 
     # ------------------------------------------------------------------
     # Multiply the polynomials by applying the NumPy polynomial methods.

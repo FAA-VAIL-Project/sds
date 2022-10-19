@@ -20,7 +20,7 @@ nav:
             - Implementation Example: implementation_python.md
   - Release Documents:
       - Release Notes: 'release_notes.md'
-#     - Release History: 'release_history.md'
+      - Release History: 'release_history.md'
   - Code of Conduct: 'code_of_conduct.md'
   - License: 'LICENSE.md'
 
