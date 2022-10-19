@@ -9,7 +9,7 @@ import json
 import os
 import time
 
-import nth_root_of_unity
+import nth_root_of_unity  # type: ignore
 import numpy
 import sds_glob  # type: ignore
 import utils  # type: ignore
