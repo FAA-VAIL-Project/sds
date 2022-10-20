@@ -53,8 +53,6 @@ Source: [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008
 - [coveralls-python - Coveralls for Python](https://github.com/TheKevJames/coveralls-python){:target="_blank"}
 - [pipenv - Python development workflow for humans](https://github.com/pypa/pipenv){:target="_blank"}
 
-## 4. Demonstration Project
-
-## 5. Resources
+## 4. Resources
 
 - **Book**: [Lott, Steven F., "Functional Python Programming", 2. Edition, Packt Publishing, 2018](https://www.packtpub.com/product/functional-python-programming-second-edition/9781788627061){:target="_blank"}
