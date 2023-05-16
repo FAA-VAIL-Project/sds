@@ -13,17 +13,13 @@
       
       
       
-        <link rel="prev" href="../release_history/">
-      
-      
-        <link rel="next" href="../LICENSE/">
       
       <link rel="icon" href="../img/Icon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.12">
     
     
       
-        <title>Code of Conduct - sds - Software Development Standards</title>
+        <title>SDS - Rust - Standards - sds - Software Development Standards</title>
       
     
     
@@ -71,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sds-contributor-covenant-code-of-conduct" class="md-skip">
+        <a href="#sds-rust-standards" class="md-skip">
           Skip to content
         </a>
       
@@ -105,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Code of Conduct
+              SDS - Rust - Standards
             
           </span>
         </div>
@@ -467,128 +463,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Code of Conduct
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../code_of_conduct/" class="md-nav__link">
         Code of Conduct
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#our-pledge" class="md-nav__link">
-    Our Pledge
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#our-standards" class="md-nav__link">
-    Our Standards
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement-responsibilities" class="md-nav__link">
-    Enforcement Responsibilities
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    Scope
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement" class="md-nav__link">
-    Enforcement
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement-guidelines" class="md-nav__link">
-    Enforcement Guidelines
-  </a>
-  
-    <nav class="md-nav" aria-label="Enforcement Guidelines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-correction" class="md-nav__link">
-    1. Correction
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-warning" class="md-nav__link">
-    2. Warning
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-temporary-ban" class="md-nav__link">
-    3. Temporary Ban
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-permanent-ban" class="md-nav__link">
-    4. Permanent Ban
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#attribution" class="md-nav__link">
-    Attribution
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -635,72 +514,51 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#our-pledge" class="md-nav__link">
-    Our Pledge
+  <a href="#1-repository-layout-top-level-directories" class="md-nav__link">
+    1. Repository Layout - Top-Level Directories
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#our-standards" class="md-nav__link">
-    Our Standards
+  <a href="#2-style" class="md-nav__link">
+    2. Style
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#enforcement-responsibilities" class="md-nav__link">
-    Enforcement Responsibilities
+  <a href="#3-quality-ensurance-tools" class="md-nav__link">
+    3. Quality Ensurance Tools
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    Scope
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement" class="md-nav__link">
-    Enforcement
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement-guidelines" class="md-nav__link">
-    Enforcement Guidelines
-  </a>
-  
-    <nav class="md-nav" aria-label="Enforcement Guidelines">
+    <nav class="md-nav" aria-label="3. Quality Ensurance Tools">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-correction" class="md-nav__link">
-    1. Correction
+  <a href="#a-formatter" class="md-nav__link">
+    a) Formatter
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-warning" class="md-nav__link">
-    2. Warning
+  <a href="#b-static-code-analyser" class="md-nav__link">
+    b) Static Code Analyser
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-temporary-ban" class="md-nav__link">
-    3. Temporary Ban
+  <a href="#c-documentation" class="md-nav__link">
+    c) Documentation
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-permanent-ban" class="md-nav__link">
-    4. Permanent Ban
+  <a href="#d-miscellaneous" class="md-nav__link">
+    d) Miscellaneous
   </a>
   
 </li>
@@ -711,8 +569,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#attribution" class="md-nav__link">
-    Attribution
+  <a href="#4-resources" class="md-nav__link">
+    4. Resources
   </a>
   
 </li>
@@ -732,103 +590,39 @@
                   
 
 
-<h1 id="sds-contributor-covenant-code-of-conduct">SDS - Contributor Covenant Code of Conduct</h1>
-<h2 id="our-pledge">Our Pledge</h2>
-<p>We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, religion, or sexual identity
-and orientation.</p>
-<p>We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.</p>
-<h2 id="our-standards">Our Standards</h2>
-<p>Examples of behavior that contributes to a positive environment for our
-community include:</p>
+<h1 id="sds-rust-standards">SDS - Rust - Standards</h1>
+<p>Here you will find all the standards and best practices to be followed when developing software with the Rust programming language for the FAA-VAIL project.</p>
+<h2 id="1-repository-layout-top-level-directories">1. Repository Layout - Top-Level Directories</h2>
 <ul>
-<li>Demonstrating empathy and kindness toward other people</li>
-<li>Being respectful of differing opinions, viewpoints, and experiences</li>
-<li>Giving and gracefully accepting constructive feedback</li>
-<li>Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience</li>
-<li>Focusing on what is best not just for us as individuals, but for the
-  overall community</li>
+<li><a href="http://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/cargo/guide/project-layout.html" target="_blank">Project Layout - The Cargo Book</a></li>
+<li><a href="http://web.mit.edu/rust-lang_v1.25/arch/amd64_ubuntu1404/share/doc/rust/html/cargo/reference/manifest.html#the-project-layout" target="_blank">The Manifest Format</a></li>
 </ul>
-<p>Examples of unacceptable behavior include:</p>
+<h2 id="2-style">2. Style</h2>
+<p>Source: <a href="https://rustc-dev-guide.rust-lang.org/conventions.html" target="_blank">Coding conventions - Guide to Rustc Development</a></p>
+<h2 id="3-quality-ensurance-tools">3. Quality Ensurance Tools</h2>
+<h3 id="a-formatter">a) Formatter</h3>
 <ul>
-<li>The use of sexualized language or imagery, and sexual attention or
-  advances of any kind</li>
-<li>Trolling, insulting or derogatory comments, and personal or political attacks</li>
-<li>Public or private harassment</li>
-<li>Publishing others' private information, such as a physical or email
-  address, without their explicit permission</li>
-<li>Other conduct which could reasonably be considered inappropriate in a
-  professional setting</li>
+<li><a href="https://github.com/rust-lang/rustfmt" target="_blank">rustfmt - Format Rust code</a></li>
 </ul>
-<h2 id="enforcement-responsibilities">Enforcement Responsibilities</h2>
-<p>Community leaders are responsible for clarifying and enforcing our standards of
-acceptable behavior and will take appropriate and fair corrective action in
-response to any behavior that they deem inappropriate, threatening, offensive,
-or harmful.</p>
-<p>Community leaders have the right and responsibility to remove, edit, or reject
-comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, and will communicate reasons for moderation
-decisions when appropriate.</p>
-<h2 id="scope">Scope</h2>
-<p>This Code of Conduct applies within all community spaces, and also applies when
-an individual is officially representing the community in public spaces.
-Examples of representing our community include using an official e-mail address,
-posting via an official social media account, or acting as an appointed
-representative at an online or offline event.</p>
-<h2 id="enforcement">Enforcement</h2>
-<p>Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-.
-All complaints will be reviewed and investigated promptly and fairly.</p>
-<p>All community leaders are obligated to respect the privacy and security of the
-reporter of any incident.</p>
-<h2 id="enforcement-guidelines">Enforcement Guidelines</h2>
-<p>Community leaders will follow these Community Impact Guidelines in determining
-the consequences for any action they deem in violation of this Code of Conduct:</p>
-<h3 id="1-correction">1. Correction</h3>
-<p><strong>Community Impact</strong>: Use of inappropriate language or other behavior deemed
-unprofessional or unwelcome in the community.</p>
-<p><strong>Consequence</strong>: A private, written warning from community leaders, providing
-clarity around the nature of the violation and an explanation of why the
-behavior was inappropriate. A public apology may be requested.</p>
-<h3 id="2-warning">2. Warning</h3>
-<p><strong>Community Impact</strong>: A violation through a single incident or series
-of actions.</p>
-<p><strong>Consequence</strong>: A warning with consequences for continued behavior. No
-interaction with the people involved, including unsolicited interaction with
-those enforcing the Code of Conduct, for a specified period of time. This
-includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or
-permanent ban.</p>
-<h3 id="3-temporary-ban">3. Temporary Ban</h3>
-<p><strong>Community Impact</strong>: A serious violation of community standards, including
-sustained inappropriate behavior.</p>
-<p><strong>Consequence</strong>: A temporary ban from any sort of interaction or public
-communication with the community for a specified period of time. No public or
-private interaction with the people involved, including unsolicited interaction
-with those enforcing the Code of Conduct, is allowed during this period.
-Violating these terms may lead to a permanent ban.</p>
-<h3 id="4-permanent-ban">4. Permanent Ban</h3>
-<p><strong>Community Impact</strong>: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
-individual, or aggression toward or disparagement of classes of individuals.</p>
-<p><strong>Consequence</strong>: A permanent ban from any sort of public interaction within
-the community.</p>
-<h2 id="attribution">Attribution</h2>
-<p>This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.0, available at
-https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.</p>
-<p>Community Impact Guidelines were inspired by <a href="https://github.com/mozilla/diversity" target="_blank">Mozilla's code of conduct
-enforcement ladder</a>.</p>
-<p><a href="https://www.contributor-covenant.org" target="_blank">homepage</a></p>
-<p>For answers to common questions about this code of conduct, see the FAQ at
-https://www.contributor-covenant.org/faq. Translations are available at
-https://www.contributor-covenant.org/translations.</p>
+<h3 id="b-static-code-analyser">b) Static Code Analyser</h3>
+<ul>
+<li><a href="https://github.com/rust-lang/rust-clippy" target="_blank">Clippy - A bunch of lints to catch common mistakes and improve your Rust code.</a></li>
+<li><a href="https://github.com/corebreaker/coveralls-rust" target="_blank">coveralls-rust - Send job to Coveralls</a></li>
+<li><a href="https://github.com/rust-lang/rustfix" target="_blank">rustfix - Automatically apply the suggestions made by rustc.</a></li>
+</ul>
+<h3 id="c-documentation">c) Documentation</h3>
+<ul>
+<li><a href="https://docs.rs/" target="_blank">Docs.rs</a></li>
+</ul>
+<h3 id="d-miscellaneous">d) Miscellaneous</h3>
+<ul>
+<li><a href="https://github.com/rust-lang/cargo" target="_blank">Cargo - The Rust package manager</a></li>
+<li><a href="https://github.com/rust-lang/rust-analyzer" target="_blank">rust-analyzer - A Rust compiler front-end for IDEs</a></li>
+</ul>
+<h2 id="4-resources">4. Resources</h2>
+<ul>
+<li><strong>Book</strong>: <a href="https://www.packtpub.com/product/hands-on-functional-programming-in-rust/9781788839358#:~:text=About%20this%20book,fulfill%20modern%20day%20software%20requirements." target="_blank">Johnson, A., "Hands-On Functional Programming in RUST",Packt Publishing, 2018</a></li>
+</ul>
 
 
 
